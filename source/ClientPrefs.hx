@@ -78,7 +78,6 @@ class ClientPrefs
 	public static var goodWindow:Int = 90;
 	public static var badWindow:Int = 135;
 	public static var safeFrames:Float = 10;
-	public static var pauseMusic:String = 'Tea Time';
 
 	// Every key has two binds, add your key bind down here and then add your control on options/ControlsSubState.hx and Controls.hx
 	public static var keyBinds:Map<String, Array<FlxKey>> = [
@@ -135,7 +134,7 @@ class ClientPrefs
 		FlxG.save.data.achievementsMap = Achievements.achievementsMap;
 		FlxG.save.data.henchmenDeath = Achievements.henchmenDeath;
 		FlxG.save.data.hitsoundVolume = hitsoundVolume;
-		FlxG.save.data.PauseMusic = PauseMusic;
+		FlxG.save.data.pauseMusic = pauseMusic;
 		// My Engine stuff
 		// Tabi stuff
 		FlxG.save.data.tabi = tabi;
@@ -284,9 +283,9 @@ class ClientPrefs
 		{
 			hitsoundVolume = FlxG.save.data.hitsoundVolume;
 		}
-		if (FlxG.save.data.PauseMusic != null)
+		if (FlxG.save.data.pauseMusic != null)
 		{
-			PauseMusic = FlxG.save.data.PauseMusic;
+			pauseMusic = FlxG.save.data.pauseMusic;
 		}
 		// My Engine stuff
 		// Tabi stuff
