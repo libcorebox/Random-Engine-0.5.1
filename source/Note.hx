@@ -71,6 +71,8 @@ class Note extends FlxSprite
 	public var hitCausesMiss:Bool = false;
 	public var distance:Float = 2000; // plan on doing scroll directions soon -bb
 
+	public var hitsoundDisabled:Bool = false;
+
 	private function set_texture(value:String):String
 	{
 		if (texture != value)
@@ -170,6 +172,7 @@ class Note extends FlxSprite
 
 		if (isSustainNote && prevNote != null)
 		{
+			hitsoundDisabled = true;
 			alpha = 0.6;
 			multAlpha = 0.6;
 			if (ClientPrefs.downScroll)

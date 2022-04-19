@@ -52,7 +52,7 @@ class ClientPrefs
 	public static var healthCounter:Bool = false;
 	public static var judgements:Bool = true;
 	public static var iconBoping:Bool = false;
-	public static var detachedCam:Bool = false;
+	public static var detachedRatings:Bool = false;
 	public static var detachedHUD:Bool = false;
 	public static var coloredMs:Bool = true;
 	public static var keTimeBar:Bool = false;
@@ -151,7 +151,7 @@ class ClientPrefs
 		FlxG.save.data.scoreType = scoreType;
 		FlxG.save.data.scoreStyle = scoreStyle;
 		FlxG.save.data.iconBoping = iconBoping;
-		FlxG.save.data.detachedCam = detachedCam;
+		FlxG.save.data.detachedRatings = detachedRatings;
 		FlxG.save.data.detachedHUD = detachedHUD;
 		FlxG.save.data.songInfo = songInfo;
 		FlxG.save.data.keTimeBar = keTimeBar;
@@ -328,9 +328,9 @@ class ClientPrefs
 		{
 			iconBoping = FlxG.save.data.iconBoping;
 		}
-		if (FlxG.save.data.detachedCam != null)
+		if (FlxG.save.data.detachedRatings != null)
 		{
-			detachedCam = FlxG.save.data.detachedCam;
+			detachedRatings = FlxG.save.data.detachedRatings;
 		}
 		if (FlxG.save.data.detachedHUD != null)
 		{

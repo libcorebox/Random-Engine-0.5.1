@@ -2680,8 +2680,8 @@ class PlayState extends MusicBeatState
 			- (150 * iconP2.scale.x) / 2
 			- iconOffset * 2;
 
-		if (health > maxHp)
-			health = maxHp;
+		if (health > ClientPrefs.maxHp)
+			health = ClientPrefs.maxHp;
 
 		if (healthBar.percent < 20)
                 {
