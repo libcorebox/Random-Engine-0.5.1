@@ -46,7 +46,7 @@ class SUtil
 		if (!grantedPermsList.contains(Permissions.READ_EXTERNAL_STORAGE)
 			|| !grantedPermsList.contains(Permissions.WRITE_EXTERNAL_STORAGE))
 		{
-			if (AndroidTools.getSDKversion() > 23 || AndroidTools.getSDKversion() == 23)
+			if (AndroidTools.sdkVersion > 23 || AndroidTools.sdkVersion == 23)
 			{
 				AndroidTools.requestPermissions([Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE]);
 			}
@@ -55,7 +55,7 @@ class SUtil
 		if (!grantedPermsList.contains(Permissions.READ_EXTERNAL_STORAGE)
 			|| !grantedPermsList.contains(Permissions.WRITE_EXTERNAL_STORAGE))
 		{
-			if (AndroidTools.getSDKversion() > 23 || AndroidTools.getSDKversion() == 23)
+			if (AndroidTools.sdkVersion > 23 || AndroidTools.sdkVersion == 23)
 			{
 				SUtil.applicationAlert("Permissions",
 					"If you accepted the permisions for storage, good, you can continue, if you not the game can't run without storage permissions please grant them in app settings" +
