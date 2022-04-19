@@ -54,6 +54,7 @@ class ClientPrefs
 	public static var iconBoping:Bool = false;
 	public static var detachedCam:Bool = false;
 	public static var detachedHUD:Bool = false;
+	public static var coloredMs:Bool = true;
 	public static var keTimeBar:Bool = false;
 	public static var songInfo:Bool = true;
 	// Arrow opacity stuff
@@ -155,6 +156,7 @@ class ClientPrefs
 		FlxG.save.data.songInfo = songInfo;
 		FlxG.save.data.keTimeBar = keTimeBar;
 		FlxG.save.data.normalCombo = normalCombo;
+		FlxG.save.data.coloredMs = coloredMs;
 		// Arrow opacity
 		FlxG.save.data.arrowOpacity = arrowOpacity;
 		FlxG.save.data.opponentArrowOpacity = opponentArrowOpacity;
@@ -310,6 +312,10 @@ class ClientPrefs
 		{
 			songInfo = FlxG.save.data.songInfo;
 		}
+		if (FlxG.save.data.coloredMs != null)
+                {
+                        coloredMs = FlxG.save.data.coloredMs;
+                }
 		if (FlxG.save.data.scoreType != null)
 		{
 			scoreType = FlxG.save.data.scoreType;

@@ -2685,16 +2685,18 @@ class PlayState extends MusicBeatState
 
 		if (healthBar.percent < 80)
 		}
-		scoreTxt.color = FlxColor.GREEN;
-		iconP2.animation.curAnim.curFrame = 1
-		} else if (healthBar.percent > 20)
+			scoreTxt.color = FlxColor.GREEN;
+			iconP2.animation.curAnim.curFrame = 1;
+		} 
+		else if (healthBar.percent > 20)
 		{
-		scoreTxt.color = FlxColor.RED;
-		iconP1.animation.curAnim.curFrame = 1;
-		} else {
-		scoreTxt.color = FlxColor.WHITE;
-		iconP2.animation.curAnim.curFrame = 0;
-		iconP1.animation.curAnim.curFrame = 0;
+			scoreTxt.color = FlxColor.RED;
+			iconP1.animation.curAnim.curFrame = 1;
+		}
+		else {
+			scoreTxt.color = FlxColor.WHITE;
+			iconP2.animation.curAnim.curFrame = 0;
+			iconP1.animation.curAnim.curFrame = 0;
 		}
 
 		if (FlxG.keys.anyJustPressed(debugKeysCharacter) && !endingSong && !inCutscene)
@@ -4115,6 +4117,12 @@ class PlayState extends MusicBeatState
 
 		FlxTween.tween(rating, {alpha: 0}, 0.2, {
 			startDelay: Conductor.crochet * 0.001
+			onUpdate: function(tween:FlxTween)                      
+			{                                
+				if (msTxt != null)
+                                        msTxt.alpha -= 0.02;
+                                timeShown++;        
+			}
 		});
 
 		FlxTween.tween(comboSpr, {alpha: 0}, 0.2, {
@@ -4122,6 +4130,12 @@ class PlayState extends MusicBeatState
 			{
 				coolText.destroy();
 				comboSpr.destroy();
+
+				if (msTxt != null && timeShown >= 20)
+                                {
+                                        remove(msTxt);         
+					msTxt = null;
+                                }
 
 				rating.destroy();
 			},
