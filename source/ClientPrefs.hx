@@ -71,7 +71,7 @@ class ClientPrefs
 	public static var playHitSound:Bool = false;
 	public static var normalCombo:Bool = false;
 	public static var sustainhp:Bool = true;
-	public static var ratingType:Bool = true;
+	public static var ratingType:String = "Random Engine";
 	// End
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var keSustains:Bool = false; // i was bored, okay?
