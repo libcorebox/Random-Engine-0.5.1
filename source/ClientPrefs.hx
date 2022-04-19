@@ -57,6 +57,8 @@ class ClientPrefs
 	public static var coloredMs:Bool = true;
 	public static var keTimeBar:Bool = false;
 	public static var songInfo:Bool = true;
+	public static var keTimeBar:Bool = false;
+	public static var keTitleScreen:Bool = false;
 	// Arrow opacity stuff
 	public static var arrowOpacity:Float = 1;
 	public static var opponentArrowOpacity:Float = 1;
@@ -69,7 +71,7 @@ class ClientPrefs
 	public static var playHitSound:Bool = false;
 	public static var normalCombo:Bool = false;
 	public static var sustainhp:Bool = true;
-
+	public static var ratingType:Bool = true;
 	// End
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var keSustains:Bool = false; // i was bored, okay?
@@ -145,6 +147,7 @@ class ClientPrefs
 		FlxG.save.data.antimash = antimash;
 		FlxG.save.data.playHitSound = playHitSound;
 		FlxG.save.data.sustainhp = sustainhp;
+		FlxG.save.data.ratingType = ratingType;
 		// UI stuff
 		FlxG.save.data.judgements = judgements;
 		FlxG.save.data.healthCounter = healthCounter;
@@ -155,6 +158,7 @@ class ClientPrefs
 		FlxG.save.data.detachedHUD = detachedHUD;
 		FlxG.save.data.songInfo = songInfo;
 		FlxG.save.data.keTimeBar = keTimeBar;
+		FlxG.save.data.keTitleScreen = keTitleScreen;
 		FlxG.save.data.normalCombo = normalCombo;
 		FlxG.save.data.coloredMs = coloredMs;
 		// Arrow opacity
@@ -295,6 +299,10 @@ class ClientPrefs
 		{
 			tabi = FlxG.save.data.tabi;
 		}
+		if (FlxG.save.data.ratingType != null)
+                {
+                        ratingType = FlxG.save.data.ratingType;
+                }
 		if (FlxG.save.data.maxHp != null)
 		{
 			maxHp = FlxG.save.data.maxHp;
@@ -315,6 +323,10 @@ class ClientPrefs
 		if (FlxG.save.data.coloredMs != null)
                 {
                         coloredMs = FlxG.save.data.coloredMs;
+                }
+		if (FlxG.save.data.keTitleScreen != null)
+                {
+                        keTitleScreen = FlxG.save.data.keTitleScreen;
                 }
 		if (FlxG.save.data.scoreType != null)
 		{

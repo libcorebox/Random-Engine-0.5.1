@@ -303,7 +303,7 @@ class TitleState extends MusicBeatState
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
-		// logoBl.screenCenter();
+		if (ClientPrefs.keTitleScreen) logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
 		swagShader = new ColorSwap();
@@ -330,7 +330,7 @@ class TitleState extends MusicBeatState
 		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 
 		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
-		add(gfDance);
+		if (!ClientPrefs.keTitleScreen) add(gfDance);
 		gfDance.shader = swagShader.shader;
 		add(logoBl);
 		// logoBl.shader = swagShader.shader;

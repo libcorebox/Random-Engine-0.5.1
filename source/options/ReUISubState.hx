@@ -34,6 +34,10 @@ class ReUISubState extends BaseOptionsMenu
 		var option:Option = new Option('Score Type:', "What should the score be like?", 'scoreType', 'string', 'Kade Engine',
 			['Kade Engine', 'Psych Engine', 'Disabled']);
 		addOption(option);
+		
+		var option:Option = new Option('Ratings Type:', "What should the ratings be like?", 'scoreType', 'string', 'Random Engine',
+                        ['Random Engine', 'Psych Engine', 'Kade Engine']);
+                addOption(option);
 
 		var option:Option = new Option('Score Style:', "What should the score look like?", 'scoreStyle', 'string', 'Random Engine',
 			['Random Engine', 'Psych Engine', 'Score Only']);
@@ -95,17 +99,27 @@ class ReUISubState extends BaseOptionsMenu
 		option.changeValue = 0.1;
 		option.decimals = 1;
 		addOption(option);
-
-		var option:Option = new Option('FPS Counter', 'If unchecked, hides FPS Counter.', 'showFPS', 'bool', true);
+	
+		var option:Option = new Option('Pause Screen Song:', "What song do you prefer for the Pause Screen?", 'pauseMusic', 'string', 'Tea Time', ['None', 'Breakfast', 'Tea Time']);
 		addOption(option);
-		option.onChange = onChangeFPSCounter;
+		option.onChange = onChangePauseMusic;
 
 		super();
 	}
 
-	function onChangeFPSCounter()
+	var changedMusic:Bool = false;
+	function onChangePauseMusic()
 	{
-		if (Main.fpsVar != null)
-			Main.fpsVar.visible = ClientPrefs.showFPS;
+		if(ClientPrefs.pauseMusic == 'None')
+			FlxG.sound.music.volume = 0;
+		else
+			FlxG.sound.playMusic(Paths.music(Paths.formatToSongPath(ClientPrefs.pauseMusic)));
+		changedMusic = true;
+	}
+
+	override function destroy()
+	{
+		if(changedMusic) FlxG.sound.playMusic(Paths.music('freakyMenu'));
+		super.destroy();
 	}
 }

@@ -40,6 +40,14 @@ class ReGameplaySettingsSubState extends BaseOptionsMenu
 		var option:Option = new Option('Sustain Hp', 'If unchecked, disables hp gained from sustains.', 'sustainhp', 'bool', true);
 		addOption(option);
 
+		var option:Option = new Option('Hitsound Volume', 'Funny notes does \"Tick!\" when you hit them.', 'hitsoundVolume', 'percent', 0);
+		addOption(option);
+		option.scrollSpeed = 1.6;
+		option.minValue = 0.0;
+		option.maxValue = 1;
+		option.changeValue = 0.1;
+		option.decimals = 1;
+
 //		var option:Option = new Option('Moving HP bar', 'if checked makes the bar move with the extra hp.', 'tabi', 'bool', false);
 //		addOption(option);
 

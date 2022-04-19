@@ -65,19 +65,6 @@ class PlayState extends MusicBeatState
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
-	public static var ratingStuff:Array<Dynamic> = [
-		['F', 0.2], // From 0% to 19%
-		['F+', 0.4], // From 20% to 39%
-		['C', 0.5], // From 40% to 49%
-		['C+', 0.6], // From 50% to 59%
-		['B', 0.69], // From 60% to 68%
-		['B+', 0.7], // 69%
-		['A', 0.8], // From 70% to 79%
-		['A+', 0.9], // From 80% to 89%
-		['S', 1], // From 90% to 99%
-		['P', 1] // The value on this one isn't used actually, since Perfect is always "1"
-	];
-
 	// SHADERS
 	public var camGameShaders:Array<ShaderEffect> = [];
 	public var camHUDShaders:Array<ShaderEffect> = [];
@@ -5131,7 +5118,6 @@ class PlayState extends MusicBeatState
 	public var ratingName:String = '?';
 	public var ratingPercent:Float;
 	public var ratingFC:String;
-
 	public function RecalculateRating()
 	{
 		setOnLuas('score', songScore);
@@ -5148,19 +5134,26 @@ class PlayState extends MusicBeatState
 				// Rating Percent
 				ratingPercent = Math.min(1, Math.max(0, totalNotesHit / totalPlayed));
 				// trace((totalNotesHit / totalPlayed) + ', Total: ' + totalPlayed + ', notes hit: ' + totalNotesHit);
-
+				var ratings:Array<Dynamic> = Ratings.ReRatingStuff;
+				switch (ClientPrefs.ratingType)
+				{
+					case "Psych Engine":
+						ratings = Ratings.PeRatingStuff;
+					case "Kade Engine":
+						ratings = Ratings.KeRatingStuff;
+				}
 				// Rating Name
 				if (ratingPercent >= 1)
 				{
-					ratingName = ratingStuff[ratingStuff.length - 1][0]; // Uses last string
+					ratingName = ratings[ratings.length - 1][0]; // Uses last string
 				}
 				else
 				{
-					for (i in 0...ratingStuff.length - 1)
+					for (i in 0...ratings.length - 1)
 					{
-						if (ratingPercent < ratingStuff[i][1])
+						if (ratingPercent < ratings[i][1])
 						{
-							ratingName = ratingStuff[i][0];
+							ratingName = ratings[i][0];
 							break;
 						}
 					}
