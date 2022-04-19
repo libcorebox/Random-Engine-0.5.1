@@ -4034,7 +4034,7 @@ class PlayState extends MusicBeatState
 		msTxt.updateHitbox();
 		rating.updateHitbox();
 
-		if (!ClientPrefs.detachedCam)
+		if (!ClientPrefs.detachedRatings)
 		{
 			rating.cameras = [camHUD];
 			msTxt.cameras = [camHUD];
