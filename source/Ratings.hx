@@ -1,7 +1,5 @@
 package;
 
-
-
 class Ratings {
 
 	public static var ReRatingStuff:Array<Dynamic> = [
@@ -49,3 +47,4 @@ class Ratings {
 		["AAAA:", 0.9999], // 99.97%
 		["AAAAA", 1] // 99.99%
 	];
+}
