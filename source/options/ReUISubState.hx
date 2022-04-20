@@ -55,6 +55,9 @@ class ReUISubState extends BaseOptionsMenu
 		var option:Option = new Option('Song Info', 'If unchecked, hides Song info.', 'songInfo', 'bool', true);
 		addOption(option);
 
+		var option:Option = new Option('Ke Title Screen', 'If checked uses the ke title screen', 'keTitleScreen', 'bool', false);
+                addOption(option);
+
 		var option:Option = new Option('Play Hit Sounds', 'If checked enables hit sound.', 'playHitSound', 'bool', false);
 		addOption(option);
 

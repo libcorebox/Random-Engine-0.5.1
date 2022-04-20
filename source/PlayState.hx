@@ -1060,7 +1060,7 @@ class PlayState extends MusicBeatState
 			healthBarBG.y = 0.11 * FlxG.height;
 
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
-			'health', 0, 2);
+			'shownHealth', 0, 2);
 		healthBar.scrollFactor.set();
 		// healthBar
 		healthBar.visible = !ClientPrefs.hideHud;
@@ -5137,9 +5137,9 @@ class PlayState extends MusicBeatState
 				var ratings:Array<Dynamic> = Ratings.ReRatingStuff;
 				switch (ClientPrefs.ratingType)
 				{
-					case "Psych Engine":
+					case 'Psych Engine':
 						ratings = Ratings.PeRatingStuff;
-					case "Kade Engine":
+					case 'Kade Engine':
 						ratings = Ratings.KeRatingStuff;
 				}
 				// Rating Name

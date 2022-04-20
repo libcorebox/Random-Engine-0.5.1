@@ -37,7 +37,7 @@ class ReVisualsSubState extends BaseOptionsMenu
 		var option:Option = new Option('Icon Boping', 'If checked enables icon boping.', 'iconBoping', 'bool', false);
 		addOption(option);
 
-		var option:Option = new Option('Ms Text Colof', 'If unchecked, disables coloring in the Ms text.', 'coloredMs', 'bool', true);
+		var option:Option = new Option('Ms Text Color', 'If unchecked, disables coloring in the Ms text.', 'coloredMs', 'bool', true);
                 addOption(option);
 
 		var option:Option = new Option('KE Timebar', 'If checked, uses the KE timebar.', 'keTimeBar', 'bool', false);
