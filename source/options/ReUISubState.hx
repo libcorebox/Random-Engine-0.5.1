@@ -61,15 +61,18 @@ class ReUISubState extends BaseOptionsMenu
 		var option:Option = new Option('Play Hit Sounds', 'If checked enables hit sound.', 'playHitSound', 'bool', false);
 		addOption(option);
 
+		var option:Option = new Option('MS Text', 'If unchecked, disables the ms text.', 'msTxt', 'bool', true);
+                addOption(option);
+
 		var option:Option = new Option('Normal Combo Count', 'If checked adds extra 0es to the combo counter.', 'normalCombo', 'bool', false);
 		addOption(option);
 
-		var option:Option = new Option('Detached Ratings', 'If checked, detaches the ratings from the camera.(independent from detached HUD)', 'detachedCam',
-			'bool', false);
+		var option:Option = new Option('Detached Ratings', 'If checked, detaches the ratings from the camera.(independent from detached HUD)', 'detachedCam','bool', false);
 		addOption(option);
 
 		var option:Option = new Option('Detached HUD', 'If checked, detaches the HUD (except the controls) from the camera.', 'detachedRatings', 'bool', false);
 		addOption(option);
+
 
 		var option:Option = new Option('Arrows Opacity', 'How Opaque should the arrows be.', 'arrowOpacity', 'percent', 1);
 		option.scrollSpeed = 1.6;

@@ -33,13 +33,24 @@ class ClientPrefs
 	public static var controllerMode:Bool = #if desktop false #else true #end;
 	public static var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,
+		'scrolltype' => 'multiplicative',
 		'songspeed' => 1.0,
 		'healthgain' => 1.0,
 		'healthloss' => 1.0,
 		'instakill' => false,
 		'practice' => false,
 		'botplay' => false,
-		'opponentplay' => false
+		'opponentplay' => false,
+
+		// difficulty modifiers
+		'noHolds' => false, // removes all holds from the chart
+		'noChords' => false, // removes all jumps, hands, and quads from the chart
+		'jackThreshold' => '16th',
+
+		// other chart modifiers
+		'mirror' => false,
+		'shuffle' => false,
+		'right' => false
 	];
 
 	// My Engine Stuff
@@ -59,6 +70,9 @@ class ClientPrefs
 	public static var songInfo:Bool = true;
 //	public static var keTimeBar:Bool = false;
 	public static var keTitleScreen:Bool = false;
+	public static var fpsRainbow:Bool = false;
+	public static var tinyFpsTxt:Bool = false;
+	public static var msTxt:Bool = true;
 	// Arrow opacity stuff
 	public static var arrowOpacity:Float = 1;
 	public static var opponentArrowOpacity:Float = 1;
@@ -161,6 +175,9 @@ class ClientPrefs
 		FlxG.save.data.keTitleScreen = keTitleScreen;
 		FlxG.save.data.normalCombo = normalCombo;
 		FlxG.save.data.coloredMs = coloredMs;
+		FlxG.save.data.fpsRainbow = fpsRainbow;
+		FlxG.save.data.tinyFpsTxt = tinyFpsTxt;
+		FlxG.save.data.msTxt = msTxt;
 		// Arrow opacity
 		FlxG.save.data.arrowOpacity = arrowOpacity;
 		FlxG.save.data.opponentArrowOpacity = opponentArrowOpacity;
@@ -332,6 +349,16 @@ class ClientPrefs
 		{
 			scoreType = FlxG.save.data.scoreType;
 		}
+		if(FlxG.save.data.fpsRainbow != null) {
+			fpsRainbow = FlxG.save.data.fpsRainbow;
+		}
+		if(FlxG.save.data.tinyFpsTxt != null) {
+			tinyFpsTxt = FlxG.save.data.tinyFpsTxt;
+		}
+		if(FlxG.save.data.msTxt != null) {
+			msTxt = FlxG.save.data.msTxt;
+		}
+		
 		if (FlxG.save.data.scoreStyle != null)
 		{
 			scoreStyle = FlxG.save.data.scoreStyle;

@@ -98,6 +98,7 @@ class PlayState extends MusicBeatState
 	public var GF_Y:Float = 130;
 
 	public var songSpeedTween:FlxTween;
+	public var songSpeedType:String = "multiplicative";
 	public var songSpeed(default, set):Float = 1;
 
 	public var boyfriendGroup:FlxSpriteGroup;
@@ -1299,6 +1300,12 @@ class PlayState extends MusicBeatState
 			CoolUtil.precacheMusic(Paths.formatToSongPath(ClientPrefs.pauseMusic));
 		}
 
+		CoolUtil.precacheSound('fnf_loss_sfx');
+		CoolUtil.precacheSound('gameOverEnd');
+		CoolUtil.precacheMusic('gameOver');
+		
+
+
 		#if desktop
 		// Updating Discord Rich Presence.
 		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
@@ -1439,7 +1446,7 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
-	public function updateScore()
+	public function setScore()
         {
 		var lol:String = 'Score:' + songScore; //simple fix
 		scoreTxt.text = lol;
@@ -2000,7 +2007,15 @@ class PlayState extends MusicBeatState
 	private function generateSong(dataPath:String):Void
 	{
 		// FlxG.log.add(ChartParser.parse());
-		songSpeed = SONG.speed * ClientPrefs.getGameplaySetting('scrollspeed', 1);
+		songSpeedType = ClientPrefs.getGameplaySetting('scrolltype','multiplicative');
+
+		switch(songSpeedType)
+		{
+			case "multiplicative":
+				songSpeed = SONG.speed * ClientPrefs.getGameplaySetting('scrollspeed', 1);
+			case "constant":
+				songSpeed = ClientPrefs.getGameplaySetting('scrollspeed', 1);
+		}
 
 		var songData = SONG;
 		Conductor.changeBPM(songData.bpm);
@@ -2590,7 +2605,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		updateScore();
+		setScore();
                 judgementCounter.text = 'Sicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\nE';
                 healthCounter.text = 'Health: ' + Math.round(health * 50) + '%';
 
@@ -5130,22 +5145,23 @@ class PlayState extends MusicBeatState
 			if (totalPlayed < 1) // Prevent divide by 0
 				ratingName = '?';
 			else
-			{
 				// Rating Percent
 				ratingPercent = Math.min(1, Math.max(0, totalNotesHit / totalPlayed));
+				
 				// trace((totalNotesHit / totalPlayed) + ', Total: ' + totalPlayed + ', notes hit: ' + totalNotesHit);
-				var ratings:Array<Dynamic> = Ratings.ReRatingStuff;
+				var ratings:Array<Dynamic> = Ratings.reRatingStuff;
 				switch (ClientPrefs.ratingType)
 				{
 					case 'Psych Engine':
-						ratings = Ratings.PeRatingStuff;
+						ratings = Ratings.peRatingStuff;
 					case 'Kade Engine':
-						ratings = Ratings.KeRatingStuff;
+						ratings = Ratings.keRatingStuff;
 				}
 				// Rating Name
 				if (ratingPercent >= 1)
 				{
-					ratingName = ratings[ratings.length - 1][0]; // Uses last string
+					var dummyRating = ratings[ratings.length - 1][0];
+					ratingName = dummyRating;
 				}
 				else
 				{

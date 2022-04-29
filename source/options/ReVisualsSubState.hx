@@ -43,6 +43,13 @@ class ReVisualsSubState extends BaseOptionsMenu
 		var option:Option = new Option('KE Timebar', 'If checked, uses the KE timebar.', 'keTimeBar', 'bool', false);
 		addOption(option);
 
+		var option:Option = new Option('Tiny Fps Text', 'If checked, makes the fps text tiny.', 'tinyFpsTxt', 'bool', false);
+                addOption(option);
+
+		var option:Option = new Option('Rainbow FPS','If checked, makes the FPS have a chroma effect.','fpsRainbow','bool',false);
+		addOption(option);
+
+
 		super();
 	}
 }

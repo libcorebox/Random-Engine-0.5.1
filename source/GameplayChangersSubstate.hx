@@ -42,12 +42,24 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 
 	function getOptions()
 	{
+
+		var goption:GameplayOption = new GameplayOption('Scroll Type', 'scrolltype', 'string', 'multiplicative', ["multiplicative", "constant"]);
+		optionsArray.push(goption);
+
 		var option:GameplayOption = new GameplayOption('Scroll Speed', 'scrollspeed', 'float', 1);
 		option.scrollSpeed = 1.5;
-		option.minValue = 0.5;
-		option.maxValue = 3;
+		option.minValue = 0.5;		
 		option.changeValue = 0.1;
-		option.displayFormat = '%vX';
+		if (goption.getValue() != "constant")
+		{
+			option.displayFormat = '%vX';
+			option.maxValue = 3;
+		}
+		else
+		{
+			option.displayFormat = "%v";
+			option.maxValue = 6;
+		}
 		optionsArray.push(option);
 
 		/*var option:GameplayOption = new GameplayOption('Playback Rate', 'songspeed', 'float', 1);
