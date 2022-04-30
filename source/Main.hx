@@ -98,7 +98,7 @@ class Main extends Sprite
 	}
 
 	// Chroma Effect (12 Colors)
-	var colors:Array<FlxColor> = [
+	var array:Array<FlxColor> = [
 		FlxColor.fromRGB(216, 34, 83),
 		FlxColor.fromRGB(255, 38, 0),
 		FlxColor.fromRGB(255, 80, 0),
@@ -120,10 +120,10 @@ class Main extends Sprite
 	{
 		// Hippity, Hoppity, your code is now my property (from KadeEngine)
 		if (FlxG.save.data.fpsRainbow) {
-		if (currentColor >= colors.length)
+		if (currentColor >= array.length)
 			currentColor = 0;
-		currentColor = Math.round(FlxMath.lerp(0, colors.length, skippedFrames / ClientPrefs.framerate));
-		(cast(Lib.current.getChildAt(0), Main)).changeFPSColor(color[currentColor]);
+		currentColor = Math.round(FlxMath.lerp(0, array.length, skippedFrames / ClientPrefs.framerate));
+		(cast(Lib.current.getChildAt(0), Main)).changeFPSColor(array[currentColor]);
 		currentColor++;
 		skippedFrames++;
 		if (skippedFrames > ClientPrefs.framerate)
