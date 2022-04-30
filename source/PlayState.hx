@@ -5145,6 +5145,7 @@ class PlayState extends MusicBeatState
 			if (totalPlayed < 1) // Prevent divide by 0
 				ratingName = '?';
 			else
+			{
 				// Rating Percent
 				ratingPercent = Math.min(1, Math.max(0, totalNotesHit / totalPlayed));
 				

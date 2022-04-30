@@ -2,7 +2,7 @@ package;
 
 class Ratings {
 
-	public static var ReRatingStuff:Array<Dynamic> = [
+	public static var reRatingStuff:Array<Dynamic> = [
                 ['F', 0.2], // From 0% to 19%
                 ['F+', 0.4], // From 20% to 39%
                 ['C', 0.5], // From 40% to 49%
@@ -15,7 +15,7 @@ class Ratings {
                 ['P', 1] // The value on this one isn't used 
         ];
 
-	public static var PeRatingStuff:Array<Dynamic> = [
+	public static var peRatingStuff:Array<Dynamic> = [
 		['You Suck!', 0.2], //From 0% to 19%
 		['Shit', 0.4], //From 20% to 39%
 		['Bad', 0.5], //From 40% to 49%
@@ -28,7 +28,7 @@ class Ratings {
 		['Perfect!!', 1] //The value on this one isn't used
 	];
 
-	public static var KeRatingStuff:Array<Dynamic> = [
+	public static var keRatingStuff:Array<Dynamic> = [
 		["D", 0.401], // 40%
 		["C", 0.6], // 59%
 		["C", 0.7], // 69%
