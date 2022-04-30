@@ -112,8 +112,8 @@ class Main extends Sprite
 		FlxColor.fromRGB(82, 40, 204),
 		FlxColor.fromRGB(150, 33, 146)
 	];
-	var skippedFrames = 0;
-	var currentColor = 0;
+	public var skippedFrames = 0;
+	public var currentColor = 0;
 
 	// Event Handlers
 	static function coloring():Void
