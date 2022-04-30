@@ -126,7 +126,7 @@ class Main extends Sprite
 		(cast(Lib.current.getChildAt(0), Main)).changeFPSColor(color[currentColor]);
 		currentColor++;
 		skippedFrames++;
-		if (skippedFrames > (ClientPrefs.framerate)
+		if (skippedFrames > ClientPrefs.framerate)
 			skippedFrames = 0;
 		}
 		else fpsVar.textColor = FlxColor.fromRGB(255, 255, 255);
