@@ -15,7 +15,7 @@ import lime.app.Application;
 import lime.system.System;
 import android.*;
 #end
-import FPS;
+import FPS-PE;
 class Main extends Sprite
 {
 	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
@@ -26,7 +26,7 @@ class Main extends Sprite
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 
-	public static var fpsVar:FPS;
+	public static var fpsVar:FPS-PE;
 
 	public static function main():Void
 	{
