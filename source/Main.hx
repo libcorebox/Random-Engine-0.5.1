@@ -116,7 +116,7 @@ class Main extends Sprite
 	public var currentColor = 0;
 
 	// Event Handlers
-	static function coloring():Void
+	public function coloring():Void
 	{
 		// Hippity, Hoppity, your code is now my property (from KadeEngine)
 		if (FlxG.save.data.fpsRainbow) {
