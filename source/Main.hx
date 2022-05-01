@@ -8,7 +8,7 @@ import flixel.FlxState;
 import openfl.Assets;
 import openfl.Lib;
 import openfl.display.Sprite;
-import openfl.display.FPS
+import openfl.display.FPS;
 import openfl.events.Event;
 #if android // only android will use those
 import sys.FileSystem;
