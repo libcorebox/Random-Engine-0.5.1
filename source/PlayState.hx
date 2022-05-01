@@ -180,8 +180,8 @@ class PlayState extends MusicBeatState
 	public var botplaySine:Float = 0;
 	public var botplayTxt:FlxText;
 	// lane underlay stuff
-	public var laneunderlay:FlxSprite;
-	public var laneunderlayOpponent:FlxSprite;
+	public var laneUnderlay:FlxSprite;
+	public var laneUnderlayOpponent:FlxSprite;
 
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
@@ -891,18 +891,18 @@ class PlayState extends MusicBeatState
 			strumLine.y = FlxG.height - 150;
 		strumLine.scrollFactor.set();
 
-		laneunderlayOpponent = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);
-		laneunderlayOpponent.alpha = ClientPrefs.opponentLaneOpacity;
-		laneunderlayOpponent.color = FlxColor.BLACK;
-		laneunderlayOpponent.scrollFactor.set();
+		laneUnderlayOpponent = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);
+		laneUnderlayOpponent.alpha = ClientPrefs.opponentLaneOpacity;
+		laneUnderlayOpponent.color = FlxColor.BLACK;
+		laneUnderlayOpponent.scrollFactor.set();
 
-		laneunderlay = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);
-		laneunderlay.alpha = ClientPrefs.laneOpacity;
-		laneunderlay.color = FlxColor.BLACK;
-		laneunderlay.scrollFactor.set();
-		add(laneunderlayOpponent);
+		laneUnderlay = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);
+		laneUnderlay.alpha = ClientPrefs.laneOpacity;
+		laneUnderlay.color = FlxColor.BLACK;
+		laneUnderlay.scrollFactor.set();
+		add(laneUnderlayOpponent);
 
-		add(laneunderlay);
+		add(laneUnderlay);
 
 		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
 		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 32);
@@ -1128,9 +1128,9 @@ class PlayState extends MusicBeatState
 		if (!ClientPrefs.healthCounter)
 			remove(healthCounter);
 		if (ClientPrefs.laneOpacity == 0)
-			remove(laneunderlay);
+			remove(laneUnderlay);
 		if (ClientPrefs.opponentLaneOpacity == 0)
-			remove(laneunderlayOpponent);
+			remove(laneUnderlayOpponent);
 		if (!ClientPrefs.songInfo)
 			remove(songInfo);
 		if (ClientPrefs.scoreType == "Disabled" || ClientPrefs.hideHud)

@@ -67,10 +67,10 @@ class ReUISubState extends BaseOptionsMenu
 		var option:Option = new Option('Normal Combo Count', 'If checked adds extra 0es to the combo counter.', 'normalCombo', 'bool', false);
 		addOption(option);
 
-		var option:Option = new Option('Detached Ratings', 'If checked, detaches the ratings from the camera.(independent from detached HUD)', 'detachedCam','bool', false);
+		var option:Option = new Option('Detached Ratings', 'If checked, detaches the ratings from the camera.(independent from detached HUD)', 'detachedRatings','bool', false);
 		addOption(option);
 
-		var option:Option = new Option('Detached HUD', 'If checked, detaches the HUD (except the controls) from the camera.', 'detachedRatings', 'bool', false);
+		var option:Option = new Option('Detached HUD', 'If checked, detaches the HUD (except the controls) from the camera.', 'detachedHUD', 'bool', false);
 		addOption(option);
 
 
