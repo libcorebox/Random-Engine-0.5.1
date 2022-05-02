@@ -40,7 +40,7 @@ class ReVisualsSubState extends BaseOptionsMenu
 		var option:Option = new Option('Ms Text Color', 'If unchecked, disables coloring in the Ms text.', 'coloredMs', 'bool', true);
                 addOption(option);
 
-		var option:Option = new Option('KE Timebar', 'If checked, uses the KE timebar.', 'keTimeBar', 'bool', false);
+		var option:Option = new Option('KE Timebar', 'If checked, makes the timebar long like in Ke.', 'keTimeBar', 'bool', false);
 		addOption(option);
 
 		var option:Option = new Option('Tiny Fps Text', 'If checked, makes the fps text tiny.', 'tinyFpsTxt', 'bool', false);
@@ -49,6 +49,9 @@ class ReVisualsSubState extends BaseOptionsMenu
 		var option:Option = new Option('Rainbow FPS','If checked, makes the FPS have a chroma effect.','fpsRainbow','bool',false);
 		addOption(option);
 
+		var option:Option = new Option('Timebar Color' 'The color of your Timebar.', 'timeBarColor', 'string', 'White'
+		['White', 'Blue', 'Cyan', 'Green', 'Red']);;
+                addOption(option);
 
 		super();
 	}

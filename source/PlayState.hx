@@ -918,6 +918,7 @@ class PlayState extends MusicBeatState
 		{
 			timeTxt.text = SONG.song;
 		}
+
 		updateTime = showTime;
 
 		if (ClientPrefs.keTimeBar)
@@ -938,6 +939,26 @@ class PlayState extends MusicBeatState
 			timeBarBG.screenCenter(X);
 
 		add(timeBarBG);
+		
+		var color:String = '0xFFFFFF';
+		
+		switch (ClientPrefs.timeBarColor)
+		{
+			case 'Green':
+			color = '0x00FF00';
+			
+			case 'White'
+			color = '0xFFFFFF';
+			
+			case 'Red'
+			color = '0xFF3300';
+
+			case 'Blue'
+			color = '0x0000FF';
+			
+			case 'Cyan'
+			color = '0x00FFFF';
+		}
 
 		timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this,
 			'songPercent', 0, 1);
@@ -945,8 +966,7 @@ class PlayState extends MusicBeatState
 
 		if (ClientPrefs.keTimeBar)
 			timeBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
-		else
-			timeBar.createFilledBar(0xFF000000, 0xFFFFFFFF);
+			timeBar.createFilledBar(0x000000, color);
 
 		timeBar.numDivisions = 600; // How much lag this causes?? Should i tone it down to idk, 400 or 200?
 		timeBar.alpha = 0;
@@ -1799,6 +1819,16 @@ class PlayState extends MusicBeatState
 			#end
 			generateStaticArrows(0);
 			generateStaticArrows(1);
+
+			// Update lane underlay positions AFTER static arrows :)
+
+			laneunderlay.x = playerStrums.members[0].x - 25;
+			laneunderlayOpponent.x = cpuStrums.members[0].x - 25;
+
+			laneunderlay.screenCenter(Y);
+			laneunderlayOpponent.screenCenter(Y);
+
+
 			for (i in 0...playerStrums.length)
 			{
 				setOnLuas('defaultPlayerStrumX' + i, playerStrums.members[i].x);
@@ -3990,9 +4020,10 @@ class PlayState extends MusicBeatState
 		msTxt.text = msTiming + " ms";
 		msTxt.size = 20;
 
-		//              if (msTxt.alpha != 1)  { //bruh is it bad to reput it to 1 if its 1?
-		msTxt.alpha = 1;
-		//              }
+//              if (msTxt.alpha != 1)  { //bruh is it bad to reput it to 1 if its 1?
+//		msTxt.alpha = 1; 
+//		let me test this
+//              }
 		add(msTxt);
 
 		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));

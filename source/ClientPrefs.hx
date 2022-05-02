@@ -68,11 +68,12 @@ class ClientPrefs
 	public static var coloredMs:Bool = true;
 	public static var keTimeBar:Bool = false;
 	public static var songInfo:Bool = true;
-//	public static var keTimeBar:Bool = false;
+	public static var keTimeBar:Bool = false;
 	public static var keTitleScreen:Bool = false;
 	public static var fpsRainbow:Bool = false;
 	public static var tinyFpsTxt:Bool = false;
 	public static var msTxt:Bool = true;
+	public static var timeBarColor:String = 'White';
 	// Arrow opacity stuff
 	public static var arrowOpacity:Float = 1;
 	public static var opponentArrowOpacity:Float = 1;
@@ -85,7 +86,7 @@ class ClientPrefs
 	public static var playHitSound:Bool = false;
 	public static var normalCombo:Bool = false;
 	public static var sustainhp:Bool = true;
-	public static var ratingType:String = "Random Engine";
+	public static var ratingType:String = 'Random Engine';
 	// End
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var keSustains:Bool = false; // i was bored, okay?
@@ -172,6 +173,7 @@ class ClientPrefs
 		FlxG.save.data.detachedHUD = detachedHUD;
 		FlxG.save.data.songInfo = songInfo;
 		FlxG.save.data.keTimeBar = keTimeBar;
+		FlxG.save.data.timeBarColor = timeBarColor;
 		FlxG.save.data.keTitleScreen = keTitleScreen;
 		FlxG.save.data.normalCombo = normalCombo;
 		FlxG.save.data.coloredMs = coloredMs;
@@ -349,6 +351,10 @@ class ClientPrefs
 		{
 			scoreType = FlxG.save.data.scoreType;
 		}
+		if (FlxG.save.data.timeBarColor != null)
+                {
+                        timeBarColor = FlxG.save.data.timeBarColor;
+                }
 		if(FlxG.save.data.fpsRainbow != null) {
 			fpsRainbow = FlxG.save.data.fpsRainbow;
 		}
