@@ -1,16 +1,14 @@
 package;
 
-import flixel.math.FlxMath;
-import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxGame;
 import flixel.FlxState;
 import openfl.Assets;
 import openfl.Lib;
-import openfl.display.Sprite;
 import openfl.display.FPS;
+import openfl.display.Sprite;
 import openfl.events.Event;
-#if android // only android will use those
+#if android //only android will use those
 import sys.FileSystem;
 import lime.app.Application;
 import lime.system.System;
@@ -25,7 +23,6 @@ class Main extends Sprite
 	var framerate:Int = 60; // How many frames per second the game should run at.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
-
 	public static var fpsVar:FPS;
 
 	public static function main():Void
@@ -35,6 +32,7 @@ class Main extends Sprite
 
 	public function new()
 	{
+
 		super();
 		SUtil.gameCrashCheck();
 
@@ -48,6 +46,8 @@ class Main extends Sprite
 		}
 	}
 
+          
+
 	private function init(?E:Event):Void
 	{
 		if (hasEventListener(Event.ADDED_TO_STAGE))
@@ -56,10 +56,6 @@ class Main extends Sprite
 		}
 
 		setupGame();
-		var timer = new haxe.Timer(1);
-		timer.run = function() {
-		coloring();
-		if (fpsVar.textColor == 0) fpsVar.textColor = -4775566;} // needs to be done because textcolor becomes black for a frame
 	}
 
 	private function setupGame():Void
@@ -78,7 +74,7 @@ class Main extends Sprite
 
 		#if !debug
 		initialState = TitleState;
-		#end
+		#end     
 
 		ClientPrefs.loadDefaultKeys();
 		SUtil.doTheCheck();
@@ -86,8 +82,7 @@ class Main extends Sprite
 
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
-		if (fpsVar != null)
-		{
+		if(fpsVar != null) {
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
 
@@ -96,44 +91,5 @@ class Main extends Sprite
 		FlxG.mouse.visible = false;
 		#end
 	}
-
-	// Chroma Effect (12 Colors)
-	var array:Array<FlxColor> = [
-		FlxColor.fromRGB(216, 34, 83),
-		FlxColor.fromRGB(255, 38, 0),
-		FlxColor.fromRGB(255, 80, 0),
-		FlxColor.fromRGB(255, 147, 0),
-		FlxColor.fromRGB(255, 199, 0),
-		FlxColor.fromRGB(255, 255, 0),
-		FlxColor.fromRGB(202, 255, 0),
-		FlxColor.fromRGB(0, 255, 0),
-		FlxColor.fromRGB(0, 146, 146),
-		FlxColor.fromRGB(0, 0, 255),
-		FlxColor.fromRGB(82, 40, 204),
-		FlxColor.fromRGB(150, 33, 146)
-	];
-	public var skippedFrames = 0;
-	public var currentColor = 0;
-
-	// Event Handlers
-	public function coloring():Void
-	{
-		// Hippity, Hoppity, your code is now my property (from KadeEngine)
-		if (FlxG.save.data.fpsRainbow) {
-		if (currentColor >= array.length)
-			currentColor = 0;
-		currentColor = Math.round(FlxMath.lerp(0, array.length, skippedFrames / ClientPrefs.framerate));
-		(cast(Lib.current.getChildAt(0), Main)).changeFPSColor(array[currentColor]);
-		currentColor++;
-		skippedFrames++;
-		if (skippedFrames > ClientPrefs.framerate)
-			skippedFrames = 0;
-		}
-		else fpsVar.textColor = FlxColor.fromRGB(255, 255, 255);
-	}
-	public function changeFPSColor(color:FlxColor)
-	{
-		fpsVar.textColor = color;
-	}
-
 }
+
