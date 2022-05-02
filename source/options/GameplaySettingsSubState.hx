@@ -101,7 +101,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		var option:Option = new Option('Safe Frames', 'Changes how many frames you have for\nhitting a note earlier or late.', 'safeFrames', 'float', 10);
 		option.scrollSpeed = 5;
 		option.minValue = 2;
-		option.maxValue = 10;
+		option.maxValue = 16;
 		option.changeValue = 0.1;
 		addOption(option);
 
