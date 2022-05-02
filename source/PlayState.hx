@@ -947,16 +947,16 @@ class PlayState extends MusicBeatState
 			case 'Green':
 			color = '0x00FF00';
 			
-			case 'White'
+			case 'White':
 			color = '0xFFFFFF';
 			
-			case 'Red'
+			case 'Red':
 			color = '0xFF3300';
 
-			case 'Blue'
+			case 'Blue':
 			color = '0x0000FF';
 			
-			case 'Cyan'
+			case 'Cyan':
 			color = '0x00FFFF';
 		}
 

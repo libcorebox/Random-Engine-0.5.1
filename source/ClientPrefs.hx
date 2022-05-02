@@ -68,7 +68,7 @@ class ClientPrefs
 	public static var coloredMs:Bool = true;
 	public static var keTimeBar:Bool = false;
 	public static var songInfo:Bool = true;
-	public static var keTimeBar:Bool = false;
+//	public static var keTimeBar:Bool = false;
 	public static var keTitleScreen:Bool = false;
 	public static var fpsRainbow:Bool = false;
 	public static var tinyFpsTxt:Bool = false;
