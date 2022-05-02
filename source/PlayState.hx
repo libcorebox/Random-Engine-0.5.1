@@ -940,34 +940,26 @@ class PlayState extends MusicBeatState
 
 		add(timeBarBG);
 		
-		var color:String = '0xFFFFFF';
-		
-		switch (ClientPrefs.timeBarColor)
-		{
-			case 'Green':
-			color = '0x00FF00';
-			
-			case 'White':
-			color = '0xFFFFFF';
-			
-			case 'Red':
-			color = '0xFF3300';
-
-			case 'Blue':
-			color = '0x0000FF';
-			
-			case 'Cyan':
-			color = '0x00FFFF';
-		}
 
 		timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this,
 			'songPercent', 0, 1);
 		timeBar.scrollFactor.set();
 
-		if (ClientPrefs.keTimeBar)
-			timeBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
-			timeBar.createFilledBar(0x000000, color);
-
+		switch (ClientPrefs.timeBarColor)
+		{
+			case 'White':
+			timeBar.createFilledBar(FlxColor.BLACK, FlxColor.WHITE);
+			case 'Blue':
+			timeBar.createFilledBar(FlxColor.BLACK, FlxColor.BLUE);
+			case 'Cyan':
+			timeBar.createFilledBar(FlxColor.BLACK, FlxColor.CYAN);
+			case 'Red':
+			timeBar.createFilledBar(FlxColor.BLACK, FlxColor.RED);
+			case 'Green':
+			timeBar.createFilledBar(FlxColor.BLACK, FlxColor.GREEN);
+			default: 
+			timeBar.createFilledBar(FlxColor.BLACK, FlxColor.WHITE);
+		}
 		timeBar.numDivisions = 600; // How much lag this causes?? Should i tone it down to idk, 400 or 200?
 		timeBar.alpha = 0;
 		timeBar.visible = showTime;
@@ -1822,11 +1814,11 @@ class PlayState extends MusicBeatState
 
 			// Update lane underlay positions AFTER static arrows :)
 
-			laneunderlay.x = playerStrums.members[0].x - 25;
-			laneunderlayOpponent.x = cpuStrums.members[0].x - 25;
+			laneUnderlay.x = playerStrums.members[0].x - 25;
+			laneUnderlayOpponent.x = cpuStrums.members[0].x - 25;
 
-			laneunderlay.screenCenter(Y);
-			laneunderlayOpponent.screenCenter(Y);
+			laneUnderlay.screenCenter(Y);
+			laneUnderlayOpponent.screenCenter(Y);
 
 
 			for (i in 0...playerStrums.length)
