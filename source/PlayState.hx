@@ -1815,7 +1815,7 @@ class PlayState extends MusicBeatState
 			// Update lane underlay positions AFTER static arrows :)
 
 			laneUnderlay.x = playerStrums.members[0].x - 25;
-			laneUnderlayOpponent.x = cpuStrums.members[0].x - 25;
+			laneUnderlayOpponent.x = opponentStrums.members[0].x - 25;
 
 			laneUnderlay.screenCenter(Y);
 			laneUnderlayOpponent.screenCenter(Y);
