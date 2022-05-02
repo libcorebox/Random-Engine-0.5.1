@@ -37,7 +37,7 @@ class ReUISubState extends BaseOptionsMenu
 		
 		var option:Option = new Option('Ratings Type:', "What should the ratings be like?", 'scoreType', 'string', 'Random Engine',
                         ['Random Engine', 'Psych Engine', 'Kade Engine']);
-                addOption(option);
+  //              addOption(option); aww men
 
 		var option:Option = new Option('Score Style:', "What should the score look like?", 'scoreStyle', 'string', 'Random Engine',
 			['Random Engine', 'Psych Engine', 'Score Only']);
