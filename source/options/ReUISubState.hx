@@ -43,10 +43,10 @@ class ReUISubState extends BaseOptionsMenu
 			['Random Engine', 'Psych Engine', 'Score Only']);
 		addOption(option);
 
-		var option:Option = new Option('Memory Counter', 'If unchecked, disables the memory counter.', 'memoryCounter', 'bool', false);
+		var option:Option = new Option('Memory Counter', 'If checked, enables the memory counter.', 'memoryCounter', 'bool', false);
 		addOption(option);
 
-		var option:Option = new Option('Memory Counter', 'If unchecked, disables the memory counter.', 'memoryCounter', 'bool', false');
+		var option:Option = new Option('Memory Counter Peak', 'If checked, adds the peak to the memory counter.', 'memoryCounterPeak', 'bool', false');
                 addOption(option);
 
 		var option:Option = new Option('Health Counter', 'If checked, enables the health counter.', 'healthCounter', 'bool', false);

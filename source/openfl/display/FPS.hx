@@ -94,7 +94,7 @@ class FPS extends TextField
 			text = "FPS: " + currentFPS;
 			var memoryMegas:Float = 0;
 			private var memPeak:Float = 0;
-			if (mem > memPeak) memPeak = mem;
+			if (memoryMegas > memPeak) memPeak = memoryMegas;
 
 			if (ClientPrefs.memoryCounter)
 			{
@@ -104,7 +104,7 @@ class FPS extends TextField
 
 			textColor = 0xFFFFFFFF;
 
-			if (ClientPrefs.memoryCounterPeak) {
+			if (ClientPrefs.memoryCounterPeak && ClientPrefs.memoryCounter) {
 			text += "\nPeak: " + memPeak + " MB";
 			}
 
