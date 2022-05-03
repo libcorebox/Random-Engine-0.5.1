@@ -35,6 +35,8 @@ class FPS extends TextField
 	@:noCompletion private var cacheCount:Int;
 	@:noCompletion private var currentTime:Float;
 	@:noCompletion private var times:Array<Float>;
+	private var memPeak:Float = 0;
+
 	
 	public var size:Bool = ClientPrefs.tinyFpsTxt;
 
@@ -91,17 +93,19 @@ class FPS extends TextField
 		{
 			text = "FPS: " + currentFPS;
 			var memoryMegas:Float = 0;
-			
-			#if openfl
+			private var memPeak:Float = 0;
+			if (mem > memPeak) memPeak = mem;
+
+			if (ClientPrefs.memoryCounter)
+			{
 			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
 			text += "\nMemory: " + memoryMegas + " MB";
-			#end
+			}
 
 			textColor = 0xFFFFFFFF;
 
-			if (ClientPrefs.memoryCounter) {
-			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
-			text += "\nMemory: " + memoryMegas + " MB";
+			if (ClientPrefs.memoryCounterPeak) {
+			text += "\nPeak: " + memPeak + " MB";
 			}
 
 			#if (gl_stats && !disable_cffi && (!html5 || !canvas))

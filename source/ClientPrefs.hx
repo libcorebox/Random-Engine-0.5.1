@@ -83,6 +83,7 @@ class ClientPrefs
 	// Misc Stuff
 	public static var antimash:Bool = true;
 	public static var memoryCounter:Bool = false;
+	public static var memoryCounterPeak:Bool = false;
 	public static var playHitSound:Bool = false;
 	public static var normalCombo:Bool = false;
 	public static var sustainhp:Bool = true;
@@ -159,6 +160,7 @@ class ClientPrefs
 		FlxG.save.data.maxHp = maxHp;
 		// Misc stuff
 		FlxG.save.data.memoryCounter = memoryCounter;
+		FlxG.save.data.memoryCounterPeak = memoryCounterPeak;
 		FlxG.save.data.antimash = antimash;
 		FlxG.save.data.playHitSound = playHitSound;
 		FlxG.save.data.sustainhp = sustainhp;
@@ -404,6 +406,10 @@ class ClientPrefs
 		{
 			memoryCounter = FlxG.save.data.memoryCounter;
 		}
+		if (FlxG.save.data.memoryCounterPeak != null)
+                {
+                        memoryCounterPeak = FlxG.save.data.memoryCounterPeak;
+                }
 		if (FlxG.save.data.antimash != null)
 		{
 			antimash = FlxG.save.data.antimash;

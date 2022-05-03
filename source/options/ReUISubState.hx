@@ -46,6 +46,9 @@ class ReUISubState extends BaseOptionsMenu
 		var option:Option = new Option('Memory Counter', 'If unchecked, disables the memory counter.', 'memoryCounter', 'bool', false);
 		addOption(option);
 
+		var option:Option = new Option('Memory Counter', 'If unchecked, disables the memory counter.', 'memoryCounter', 'bool', false');
+                addOption(option);
+
 		var option:Option = new Option('Health Counter', 'If checked, enables the health counter.', 'healthCounter', 'bool', false);
 		addOption(option);
 
