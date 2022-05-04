@@ -4077,7 +4077,7 @@ class PlayState extends MusicBeatState
                         rating.color = FlxColor.RED;
 
                         case 'Shit':
-                        rating.color = FlxColor.GREY;
+                        rating.color = FlxColor.GRAY;
 			}
                 }
 
@@ -4126,7 +4126,7 @@ class PlayState extends MusicBeatState
                                       numScore.color = FlxColor.RED;
 
                                       case 'Shit':
-                                      numScore.color = FlxColor.GREY;
+                                      numScore.color = FlxColor.GRAY;
 				}
 
                        }
