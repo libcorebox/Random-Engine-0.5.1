@@ -88,6 +88,8 @@ class ClientPrefs
 	public static var normalCombo:Bool = false;
 	public static var sustainhp:Bool = true;
 	public static var ratingType:String = 'Random Engine';
+	public static var coloredRatings:Bool = false;
+	public static var coloredCombo:Bool = false;
 	// End
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var keSustains:Bool = false; // i was bored, okay?
@@ -182,6 +184,8 @@ class ClientPrefs
 		FlxG.save.data.fpsRainbow = fpsRainbow;
 		FlxG.save.data.tinyFpsTxt = tinyFpsTxt;
 		FlxG.save.data.msTxt = msTxt;
+		FlxG.save.data.coloredRatings = coloredRatings;
+		FlxG.save.data.coloredCombo = coloredCombo;
 		// Arrow opacity
 		FlxG.save.data.arrowOpacity = arrowOpacity;
 		FlxG.save.data.opponentArrowOpacity = opponentArrowOpacity;
@@ -353,6 +357,10 @@ class ClientPrefs
 		{
 			scoreType = FlxG.save.data.scoreType;
 		}
+		if (FlxG.save.data.coloredRatings != null)
+		{
+			coloredRatings = FlxG.save.data.coloredRatings;
+		}
 		if (FlxG.save.data.timeBarColor != null)
                 {
                         timeBarColor = FlxG.save.data.timeBarColor;
@@ -378,6 +386,10 @@ class ClientPrefs
 		if (FlxG.save.data.detachedRatings != null)
 		{
 			detachedRatings = FlxG.save.data.detachedRatings;
+		}
+		if (FlxG.save.data.coloredCombo != null)
+		{
+			coloredCombo = FlxG.save.data.coloredCombo;
 		}
 		if (FlxG.save.data.detachedHUD != null)
 		{

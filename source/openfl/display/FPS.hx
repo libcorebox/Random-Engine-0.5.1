@@ -93,20 +93,20 @@ class FPS extends TextField
 		{
 			text = "FPS: " + currentFPS;
 			var memoryMegas:Float = 0;
-			private var memPeak:Float = 0;
-			if (memoryMegas > memPeak)  { memPeak = memoryMegas; }
+
+			var memPeak:Float = 0;
+			
+			if (memoryMegas > memPeak)  memPeak = memoryMegas;
 
 			if (ClientPrefs.memoryCounter)
 			{
-			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
-			text += "\nMemory: " + memoryMegas + " MB";
+				memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
+				text += "\nMemory: " + memoryMegas + " MB";
+				if (ClientPrefs.memoryCounterPeak)
+				text += "\nPeak: " + memPeak + " MB";			
 			}
 
 			textColor = 0xFFFFFFFF;
-
-			if (ClientPrefs.memoryCounterPeak && ClientPrefs.memoryCounter) {
-			text += "\nPeak: " + memPeak + " MB";
-			}
 
 			#if (gl_stats && !disable_cffi && (!html5 || !canvas))
 			text += "\ntotalDC: " + Context3DStats.totalDrawCalls();

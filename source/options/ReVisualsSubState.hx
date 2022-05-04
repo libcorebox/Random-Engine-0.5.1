@@ -49,6 +49,12 @@ class ReVisualsSubState extends BaseOptionsMenu
 		var option:Option = new Option('Rainbow FPS','If checked, makes the FPS have a chroma effect.','fpsRainbow','bool',false);
 		addOption(option);
 
+		var option:Option = new Option('Colored Ratings','If checked, colors the Ratings.','coloredRatings','bool',false);
+                addOption(option);
+		
+		var option:Option = new Option('Colored Combo','If checked, colors the combo','coloredCombo','bool',false);
+                addOption(option);
+
 		var option:Option = new Option('Timebar Color', 'The color of your Timebar.', 'timeBarColor', 'string', 'White', 
 		['White', 'Blue', 'Cyan', 'Green', 'Red']);
                 addOption(option);
