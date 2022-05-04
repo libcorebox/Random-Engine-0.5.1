@@ -43,17 +43,17 @@ class ReVisualsSubState extends BaseOptionsMenu
 		var option:Option = new Option('KE Timebar', 'If checked, makes the timebar long like in Ke.', 'keTimeBar', 'bool', false);
 		addOption(option);
 
-		var option:Option = new Option('Tiny Fps Text', 'If checked, makes the fps text tiny.', 'tinyFpsTxt', 'bool', false);
+		var option:Option = new Option('Tiny Fps Text', 'If checked, makes the fps text tiny, needs a restart.', 'tinyFpsTxt', 'bool', false);
                 addOption(option);
 
 		var option:Option = new Option('Rainbow FPS','If checked, makes the FPS have a chroma effect.','fpsRainbow','bool',false);
 		addOption(option);
 
 		var option:Option = new Option('Colored Ratings','If checked, colors the Ratings.','coloredRatings','bool',false);
-                addOption(option);
+//                addOption(option);
 		
 		var option:Option = new Option('Colored Combo','If checked, colors the combo','coloredCombo','bool',false);
-                addOption(option);
+//                addOption(option); bruh
 
 		var option:Option = new Option('Timebar Color', 'The color of your Timebar.', 'timeBarColor', 'string', 'White', 
 		['White', 'Blue', 'Cyan', 'Green', 'Red']);

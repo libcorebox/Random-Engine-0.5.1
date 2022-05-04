@@ -4063,7 +4063,7 @@ class PlayState extends MusicBeatState
 			comboSpr.cameras = [camHUD];
 		}
 		
-		if (ClientPrefs.coloredRatings)
+/*		if (ClientPrefs.coloredRatings)
 		{
 			switch (daRating)
                         {
@@ -4079,8 +4079,8 @@ class PlayState extends MusicBeatState
                         case 'Shit':
                         rating.color = FlxColor.GRAY;
 			}
-                }
-
+                } fuck i need to fix this
+*/
 		var seperatedScore:Array<Int> = [];
 
 		var comboSplit:Array<String> = (combo + "").split('');
@@ -4112,7 +4112,7 @@ class PlayState extends MusicBeatState
 			if (!ClientPrefs.detachedRatings)
 				numScore.cameras = [camHUD];
 
-			if (ClientPrefs.coloredCombo) 
+/*			if (ClientPrefs.coloredCombo) 
 			{
 				switch (daRating)
                                 {
@@ -4129,8 +4129,8 @@ class PlayState extends MusicBeatState
                                       numScore.color = FlxColor.GRAY;
 				}
 
-                       }
-
+                       } fuck i need to fix this x2
+*/
 			numScore.screenCenter();
 			numScore.x = coolText.x + (43 * daLoop) - 90;
 			numScore.y += 80;

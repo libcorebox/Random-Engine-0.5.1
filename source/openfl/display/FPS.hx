@@ -95,12 +95,11 @@ class FPS extends TextField
 			var memoryMegas:Float = 0;
 
 			var memPeak:Float = 0;
-			
-			if (memoryMegas > memPeak)  memPeak = memoryMegas;
 
 			if (ClientPrefs.memoryCounter)
 			{
 				memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
+				if (memoryMegas > memPeak) memPeak = memoryMegas;
 				text += "\nMemory: " + memoryMegas + " MB";
 				if (ClientPrefs.memoryCounterPeak)
 				text += "\nPeak: " + memPeak + " MB";			
