@@ -4002,9 +4002,12 @@ class PlayState extends MusicBeatState
 				case 'sick':
 					msTxt.color = FlxColor.CYAN;
 			}
-			if (cpuControlled)
-				msTxt.color = FlxColor.ORANGE;
+
+
 		}
+		if (cpuControlled)
+			msTxt.color = FlxColor.ORANGE;
+		
 
 		msTxt.borderStyle = OUTLINE;
 		msTxt.borderSize = 1;
@@ -4167,7 +4170,7 @@ class PlayState extends MusicBeatState
 		});
 	}
 
-	function setRatingColor
+	public function setRatingColor()
 	{
 		switch (daRating)
 		{
@@ -4185,7 +4188,7 @@ class PlayState extends MusicBeatState
 		}
 	}
 	
-	function setComboColor
+	public function setComboColor()
 	{
 		switch (daRating)    
 		{
