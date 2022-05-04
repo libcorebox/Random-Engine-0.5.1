@@ -76,7 +76,7 @@ class ReUISubState extends BaseOptionsMenu
 		var option:Option = new Option('Detached HUD', 'If checked, detaches the HUD (except the controls) from the camera.', 'detachedHUD', 'bool', false);
 		addOption(option);
 
-		var option:Option = new Option('noteSkin :', "What should your notes look like?", 'noteSkin', 'string', 'Arrow',
+		var option:Option = new Option('noteSkin :', 'What should your notes look like?', 'noteSkin', 'string', 'Arrow',
                         ['Arrow', 'Circle']);
                 addOption(option);
 
