@@ -94,7 +94,7 @@ class FPS extends TextField
 			text = "FPS: " + currentFPS;
 			var memoryMegas:Float = 0;
 			private var memPeak:Float = 0;
-			if (memoryMegas > memPeak) memPeak = memoryMegas;
+			if (memoryMegas > memPeak)  { memPeak = memoryMegas; }
 
 			if (ClientPrefs.memoryCounter)
 			{

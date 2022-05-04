@@ -4059,6 +4059,8 @@ class PlayState extends MusicBeatState
 			msTxt.cameras = [camHUD];
 			comboSpr.cameras = [camHUD];
 		}
+		
+		if (ClientPrefs.coloredRatings) setRatingColor();
 
 		var seperatedScore:Array<Int> = [];
 
@@ -4090,6 +4092,8 @@ class PlayState extends MusicBeatState
 			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
 			if (!ClientPrefs.detachedRatings)
 				numScore.cameras = [camHUD];
+
+			if (ClientPrefs.coloredCombo) setComboColor();		
 
 			numScore.screenCenter();
 			numScore.x = coolText.x + (43 * daLoop) - 90;
@@ -4163,6 +4167,42 @@ class PlayState extends MusicBeatState
 		});
 	}
 
+	function setRatingColor
+	{
+		switch (daRating)
+		{
+			case 'Sick':
+			rating.color = FlxColor.CYAN;
+			
+			case 'Good':
+			rating.color = FlxColor.GREEN;
+			
+			case 'Bad':
+			rating.color = FlxColor.RED;
+			
+			case 'Shit':
+                        rating.color = FlxColor.GREY;
+		}
+	}
+	
+	function setComboColor
+	{
+		switch (daRating)    
+		{
+                        case 'Sick':
+                        numScore.color = FlxColor.CYAN;
+
+                        case 'Good':
+                        numScore.color = FlxColor.GREEN;
+
+                        case 'Bad':
+                        numScore.color = FlxColor.RED;
+
+                        case 'Shit':
+                        numScore.color = FlxColor.GREY;
+ 
+                }
+	}
 	private function onKeyPress(event:KeyboardEvent):Void
 	{
 		var eventKey:FlxKey = event.keyCode;
