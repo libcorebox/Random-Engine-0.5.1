@@ -256,7 +256,10 @@ class Note extends FlxSprite
 			skin = PlayState.SONG.arrowSkin;
 			if (skin == null || skin.length < 1)
 			{
-				skin = 'NOTE_assets';
+				skin = 'Arrow_assets';
+			}
+			if (ClientPrefs.noteSkin == 'Circle') {
+				skin = 'Circles_assets';
 			}
 		}
 
@@ -275,17 +278,17 @@ class Note extends FlxSprite
 		{
 			if (isSustainNote)
 			{
-				loadGraphic(Paths.image('pixelUI/' + blahblah + 'ENDS'));
+				loadGraphic(Paths.image('noteSkins/pixel/' + blahblah + 'ENDS'));
 				width = width / 4;
 				height = height / 2;
-				loadGraphic(Paths.image('pixelUI/' + blahblah + 'ENDS'), true, Math.floor(width), Math.floor(height));
+				loadGraphic(Paths.image('noteSkins/pixel/' + blahblah + 'ENDS'), true, Math.floor(width), Math.floor(height));
 			}
 			else
 			{
-				loadGraphic(Paths.image('pixelUI/' + blahblah));
+				loadGraphic(Paths.image('noteSkins/pixel/' + blahblah));
 				width = width / 4;
 				height = height / 5;
-				loadGraphic(Paths.image('pixelUI/' + blahblah), true, Math.floor(width), Math.floor(height));
+				loadGraphic(Paths.image('noteSkins/pixel/' + blahblah), true, Math.floor(width), Math.floor(height));
 			}
 			setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 			loadPixelNoteAnims();
@@ -293,7 +296,7 @@ class Note extends FlxSprite
 		}
 		else
 		{
-			frames = Paths.getSparrowAtlas(blahblah);
+			frames = Paths.getSparrowAtlas('noteSkins/' + blahblah);
 			loadNoteAnims();
 			antialiasing = ClientPrefs.globalAntialiasing;
 		}
