@@ -4016,7 +4016,7 @@ class PlayState extends MusicBeatState
 		msTxt.size = 20;
 
 //              if (msTxt.alpha != 1)  { //bruh is it bad to reput it to 1 if its 1?
-//		msTxt.alpha = 1; 
+		msTxt.alpha = 1; 
 //		let me test this
 //              }
 		add(msTxt);
@@ -4063,7 +4063,23 @@ class PlayState extends MusicBeatState
 			comboSpr.cameras = [camHUD];
 		}
 		
-		if (ClientPrefs.coloredRatings) setRatingColor();
+		if (ClientPrefs.coloredRatings)
+		{
+			switch (daRating)
+                        {
+                        case 'Sick':
+                        rating.color = FlxColor.CYAN;
+
+                        case 'Good':
+                        rating.color = FlxColor.GREEN;
+
+                        case 'Bad':
+                        rating.color = FlxColor.RED;
+
+                        case 'Shit':
+                        rating.color = FlxColor.GREY;
+			}
+                }
 
 		var seperatedScore:Array<Int> = [];
 
@@ -4096,7 +4112,24 @@ class PlayState extends MusicBeatState
 			if (!ClientPrefs.detachedRatings)
 				numScore.cameras = [camHUD];
 
-			if (ClientPrefs.coloredCombo) setComboColor();		
+			if (ClientPrefs.coloredCombo) 
+			{
+				switch (daRating)
+                                {
+                                      case 'Sick':
+                                      numScore.color = FlxColor.CYAN;
+
+                                      case 'Good':
+                                      numScore.color = FlxColor.GREEN;
+
+                                      case 'Bad':
+                                      numScore.color = FlxColor.RED;
+
+                                      case 'Shit':
+                                      numScore.color = FlxColor.GREY;
+				}
+
+                       }
 
 			numScore.screenCenter();
 			numScore.x = coolText.x + (43 * daLoop) - 90;
@@ -4170,42 +4203,6 @@ class PlayState extends MusicBeatState
 		});
 	}
 
-	public function setRatingColor()
-	{
-		switch (daRating)
-		{
-			case 'Sick':
-			rating.color = FlxColor.CYAN;
-			
-			case 'Good':
-			rating.color = FlxColor.GREEN;
-			
-			case 'Bad':
-			rating.color = FlxColor.RED;
-			
-			case 'Shit':
-                        rating.color = FlxColor.GREY;
-		}
-	}
-	
-	public function setComboColor()
-	{
-		switch (daRating)    
-		{
-                        case 'Sick':
-                        numScore.color = FlxColor.CYAN;
-
-                        case 'Good':
-                        numScore.color = FlxColor.GREEN;
-
-                        case 'Bad':
-                        numScore.color = FlxColor.RED;
-
-                        case 'Shit':
-                        numScore.color = FlxColor.GREY;
- 
-                }
-	}
 	private function onKeyPress(event:KeyboardEvent):Void
 	{
 		var eventKey:FlxKey = event.keyCode;
