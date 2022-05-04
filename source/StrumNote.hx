@@ -43,7 +43,7 @@ class StrumNote extends FlxSprite
 		if (PlayState.SONG.arrowSkin != null && PlayState.SONG.arrowSkin.length > 1) 
 			skin = PlayState.SONG.arrowSkin;
 
-		if (ClientPrefs.noteSkinSettings == 'Circle') {
+		if (ClientPrefs.noteSkin == 'Circle') {
 			skin = 'Circles_assets';
 		}
 
