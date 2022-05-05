@@ -280,10 +280,14 @@ class Note extends FlxSprite
 		if (PlayState.isPixelStage)
 		{
 
-			if (!FileSystem.exists('noteSkins/pixel/' + blahblah) // andas??
+			if (!FileSystem.exists('noteSkins/pixel/' + blahblah)) {
 				skin = 'Arrow_assets';
-			
+			var arraySkin:Array<String> = skin.split('/');
+			arraySkin[arraySkin.length - 1] = prefix + arraySkin[arraySkin.length - 1] + suffix;
 
+		        var lastScaleY:Float = scale.y;
+	                var blahblah:String = arraySkin.join('/');
+			}
 			
 
 			if (isSustainNote)
