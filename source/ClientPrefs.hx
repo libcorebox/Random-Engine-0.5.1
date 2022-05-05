@@ -74,6 +74,7 @@ class ClientPrefs
 	public static var tinyFpsTxt:Bool = false;
 	public static var msTxt:Bool = true;
 	public static var noteSkin:String = 'Arrow';
+	public static var noteSkinOverride:Bool = false;
 	public static var timeBarColor:String = 'White';
 	// Arrow opacity stuff
 	public static var arrowOpacity:Float = 1;
@@ -186,6 +187,7 @@ class ClientPrefs
 		FlxG.save.data.tinyFpsTxt = tinyFpsTxt;
 		FlxG.save.data.msTxt = msTxt;
 		FlxG.save.data.noteSkin = noteSkin;
+		FlxG.save.data.noteSkinOverride = noteSkinOverride;
 		FlxG.save.data.coloredRatings = coloredRatings;
 		FlxG.save.data.coloredCombo = coloredCombo;
 		// Arrow opacity
@@ -379,6 +381,9 @@ class ClientPrefs
 		if(FlxG.save.data.noteSkin != null) {
                         noteSkin = FlxG.save.data.noteSkin;
                 }
+		if(FlxG.save.data.noteSkinOverride != null) {
+                        noteSkinOverride = FlxG.save.data.noteSkinOverride;        
+		}
 		if (FlxG.save.data.scoreStyle != null)
 		{
 			scoreStyle = FlxG.save.data.scoreStyle;

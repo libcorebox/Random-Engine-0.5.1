@@ -255,12 +255,15 @@ class Note extends FlxSprite
 		{
 			skin = PlayState.SONG.arrowSkin;
 			if (skin == null || skin.length < 1)
-			{
 				skin = 'Arrow_assets';
-			}
-			if (ClientPrefs.noteSkin == 'Circle') {
+			if (ClientPrefs.noteSkin == 'Circle') 
 				skin = 'Circles_assets';
+			if (!ClientPrefs.noteSkinOverride) {
+				if (PlayState.SONG.arrowSkin != null && PlayState.SONG.arrowSkin.length > 1)
+		                        skin = PlayState.SONG.arrowSkin;
 			}
+			
+			
 		}
 
 		var animName:String = null;
