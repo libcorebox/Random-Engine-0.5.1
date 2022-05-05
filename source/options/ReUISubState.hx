@@ -31,8 +31,8 @@ class ReUISubState extends BaseOptionsMenu
 {
 	public function new()
 	{
-		var option:Option = new Option('Score Type:', "What should the score be like?", 'scoreType', 'string', 'Kade Engine',
-			['Kade Engine', 'Psych Engine', 'Disabled']);
+		var option:Option = new Option('Score Type:', "What should the score be like?", 'scoreType', 'string', 'Psych Engine',
+			['Psych Engine', 'Kade Engine', 'Disabled']);
 		addOption(option);
 		
 		var option:Option = new Option('Ratings Type:', "What should the ratings be like?", 'scoreType', 'string', 'Random Engine',
@@ -76,7 +76,7 @@ class ReUISubState extends BaseOptionsMenu
 		var option:Option = new Option('Detached HUD', 'If checked, detaches the HUD (except the controls) from the camera.', 'detachedHUD', 'bool', false);
 		addOption(option);
 
-		var option:Option = new Option('noteSkin :', 'What should your notes look like?', 'noteSkin', 'string', 'Arrow',
+		var option:Option = new Option('NoteSkin :', 'What should your notes look like?', 'noteSkin', 'string', 'Arrow',
                         ['Arrow', 'Circle']);
                 addOption(option);
 
