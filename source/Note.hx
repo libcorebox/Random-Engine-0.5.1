@@ -282,11 +282,6 @@ class Note extends FlxSprite
 
 			if (!FileSystem.exists('noteSkins/pixel/' + blahblah)) {
 				skin = 'Arrow_assets';
-			var arraySkin:Array<String> = skin.split('/');
-			arraySkin[arraySkin.length - 1] = prefix + arraySkin[arraySkin.length - 1] + suffix;
-
-		        var lastScaleY:Float = scale.y;
-	                var blahblah:String = arraySkin.join('/');
 			}
 			
 

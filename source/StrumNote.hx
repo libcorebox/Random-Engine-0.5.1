@@ -1,4 +1,4 @@
-package;
+aAqñpackage;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -61,7 +61,7 @@ class StrumNote extends FlxSprite
 		if (PlayState.isPixelStage)
 		{
 
-			if (Filesystem.exists('noteSkins/pixel/' + texture)
+			if (Filesystem.exists('noteSkins/pixel/' + texture))
 				skin = 'Arrow_assets';
 
 			loadGraphic(Paths.image('noteSkins/pixel/' + texture));
