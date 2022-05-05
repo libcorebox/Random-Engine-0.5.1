@@ -49,6 +49,13 @@ class StrumNote extends FlxSprite
 		}
 
 		texture = skin; // Load texture and anims
+		
+		if (PlayState.isPixelStage)
+                {
+                        if (!FileSystem.exists('noteSkins/pixel/' + texture))
+                                skin = 'Arrow_assets';
+				texture = skin; // this is a failsafe
+                }
 
 		scrollFactor.set();
 	}
@@ -61,11 +68,6 @@ class StrumNote extends FlxSprite
 
 		if (PlayState.isPixelStage)
 		{
-
-			if (FileSystem.exists('noteSkins/pixel/' + texture)) {
-				skin = 'Arrow_assets';
-				texture = skin;
-			}
 
 			loadGraphic(Paths.image('noteSkins/pixel/' + texture));
 			width = width / 4;
