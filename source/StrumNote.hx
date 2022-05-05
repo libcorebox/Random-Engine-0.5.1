@@ -62,7 +62,7 @@ class StrumNote extends FlxSprite
 		if (PlayState.isPixelStage)
 		{
 
-			if (Filesystem.exists('noteSkins/pixel/' + texture)) {
+			if (FileSystem.exists('noteSkins/pixel/' + texture)) {
 				skin = 'Arrow_assets';
 				texture = skin;
 			}
@@ -192,3 +192,4 @@ class StrumNote extends FlxSprite
 		}
 	}
 }
+
