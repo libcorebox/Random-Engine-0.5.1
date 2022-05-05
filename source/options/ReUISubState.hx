@@ -80,7 +80,7 @@ class ReUISubState extends BaseOptionsMenu
                         ['Arrow', 'Circle']);
                 addOption(option);
 
-		var option:Option = new Option('NoteSkin Override', 'If you want to override editor noteskins.', 'noteSkinOverride', 'bool', 'false',);
+		var option:Option = new Option('NoteSkin Override', 'If you want to override editor noteskins.', 'noteSkinOverride', 'bool', 'false');
                 addOption(option);
 
 		var option:Option = new Option('Arrows Opacity', 'How Opaque should the arrows be.', 'arrowOpacity', 'percent', 1);
