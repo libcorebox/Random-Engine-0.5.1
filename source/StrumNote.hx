@@ -39,7 +39,7 @@ class StrumNote extends FlxSprite
 		this.noteData = leData;
 		super(x, y);
 
-		var skin:String = 'NOTE_assets';
+		var skin:String = 'Arrow_assets';
 		if (PlayState.SONG.arrowSkin != null && PlayState.SONG.arrowSkin.length > 1) 
 			skin = PlayState.SONG.arrowSkin;
 
@@ -60,6 +60,10 @@ class StrumNote extends FlxSprite
 
 		if (PlayState.isPixelStage)
 		{
+
+			if (Filesystem.exists('noteSkins/pixel/' + texture)
+				skin = 'Arrow_assets';
+
 			loadGraphic(Paths.image('noteSkins/pixel/' + texture));
 			width = width / 4;
 			height = height / 5;
