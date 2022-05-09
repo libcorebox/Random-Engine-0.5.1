@@ -430,12 +430,12 @@ class PlayState extends MusicBeatState
 					GlitchShader = new GlitchEffect();
 					GlitchShader.glitchMultiply += 0.4;
 				        shaderFilter.push(new ShaderFilter(GlitchShader.shader));
-					diduseshader = true
+					diduseshader = true;
 				case 'fresh':
 					VcrShader = new VhsHandler();
 					VcrShade.noise += 0.4;
 				        shaderFilter.push(new ShaderFilter(VcrShader.shader));
-					diduseshader = true
+					diduseshader = true;
 					sus = 1;
 			}
 		}
