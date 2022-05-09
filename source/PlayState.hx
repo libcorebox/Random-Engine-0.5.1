@@ -58,9 +58,7 @@ import Shaders;
 import openfl.filters.ShaderFilter;
 import openfl.filters.BitmapFilter;
 import GlitchEffect.GlitchShader;
-import CrtEffect.CrtShader;
 import VcrShader.VhsHandler;
-import GameboyDesaturator.GameboyHandler;
 
 using StringTools;
 
