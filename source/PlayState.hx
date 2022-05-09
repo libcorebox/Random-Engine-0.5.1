@@ -420,10 +420,12 @@ class PlayState extends MusicBeatState
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
 
 		if (ClientPrefs.sus) {
+
+			var diduseshader:Bool = false;
+                        var sus:Int = 0;
+
 			switch (curSong)
 			{
-				var diduseshader:Bool = false;
-				var sus:Int = 0;
 				case 'bopeebo':
 					GlitchShader = new GlitchEffect();
 					GlitchShader.glitchMultiply += 0.4;
