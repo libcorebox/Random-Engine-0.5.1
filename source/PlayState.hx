@@ -419,11 +419,10 @@ class PlayState extends MusicBeatState
 		dadGroup = new FlxSpriteGroup(DAD_X, DAD_Y);
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
 
+		var diduseshader:Bool = false;
+		var sus:Int = 0;
+
 		if (ClientPrefs.sus) {
-
-			var diduseshader:Bool = false;
-                        var sus:Int = 0;
-
 			switch (curSong)
 			{
 				case 'bopeebo':
@@ -433,7 +432,7 @@ class PlayState extends MusicBeatState
 					diduseshader = true;
 				case 'fresh':
 					VcrShader = new VhsHandler();
-					VcrShade.noise += 0.4;
+					VcrShader.noise += 0.4;
 				        shaderFilter.push(new ShaderFilter(VcrShader.shader));
 					diduseshader = true;
 					sus = 1;

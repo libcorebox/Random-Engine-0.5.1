@@ -1044,7 +1044,7 @@ class InvertColorsEffect extends Effect
 	}
 }
 
-class GlitchShader extends FlxShader
+/*class GlitchShader extends FlxShader
 {
 	@:glFragmentSource('
     #pragma header
@@ -1087,7 +1087,7 @@ class GlitchShader extends FlxShader
 		super();
 	}
 }
-
+*/
 class InvertShader extends FlxShader
 {
 	@:glFragmentSource('
