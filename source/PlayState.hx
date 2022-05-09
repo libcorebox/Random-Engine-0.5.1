@@ -75,11 +75,8 @@ class PlayState extends MusicBeatState
 
 	public var shaderFilter:Array<ShaderFilter> = [];
 
-	public var CrtShader:CrtEffect = null;
-	public var GameboyShader:GameboyHandler = null;
 	public var GlitchShader:GlitchEffect = null;
 	public var VcrShader:VhsHandler = null;
-	public var VignetteShader:VignetteEffect = null;
 
 	public var modchartTweens:Map<String, FlxTween> = new Map<String, FlxTween>();
 	public var modchartSprites:Map<String, ModchartSprite> = new Map<String, ModchartSprite>();
@@ -426,7 +423,7 @@ class PlayState extends MusicBeatState
 			switch (curSong)
 			{
 				var diduseshader:Bool = false;
-
+				var sus:Int = 0;
 				case 'bopeebo':
 					GlitchShader = new GlitchEffect();
 					GlitchShader.glitchMultiply += 0.4;
@@ -437,6 +434,7 @@ class PlayState extends MusicBeatState
 					VcrShade.noise += 0.4;
 				        shaderFilter.push(new ShaderFilter(VcrShader.shader));
 					diduseshader = true
+					sus = 1;
 			}
 		}
 		
