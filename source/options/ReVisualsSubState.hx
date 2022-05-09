@@ -49,6 +49,9 @@ class ReVisualsSubState extends BaseOptionsMenu
 		var option:Option = new Option('Rainbow FPS','If checked, makes the FPS have a chroma effect.','fpsRainbow','bool',false);
 		addOption(option);
 
+		var option:Option = new Option('Sus Test','If checked, does the sussy shader test.','sus','bool',false);
+                addOption(option);
+
 		var option:Option = new Option('Colored Ratings','If checked, colors the Ratings.','coloredRatings','bool',false);
 //                addOption(option);
 		

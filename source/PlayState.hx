@@ -57,6 +57,10 @@ import sys.FileSystem;
 import Shaders;
 import openfl.filters.ShaderFilter;
 import openfl.filters.BitmapFilter;
+import GlitchEffect.GlitchShader;
+import CrtEffect.CrtShader;
+import VcrShader.VhsHandler;
+import GameboyDesaturator.GameboyHandler;
 
 using StringTools;
 
@@ -70,6 +74,14 @@ class PlayState extends MusicBeatState
 	public var camHUDShaders:Array<ShaderEffect> = [];
 	public var camOtherShaders:Array<ShaderEffect> = [];
 	public var shaderUpdates:Array<Float->Void> = [];
+
+	public var shaderFilter:Array<ShaderFilter> = [];
+
+	public var CrtShader:CrtEffect = null;
+	public var GameboyShader:GameboyHandler = null;
+	public var GlitchShader:GlitchEffect = null;
+	public var VcrShader:VhsHandler = null;
+	public var VignetteShader:VignetteEffect = null;
 
 	public var modchartTweens:Map<String, FlxTween> = new Map<String, FlxTween>();
 	public var modchartSprites:Map<String, ModchartSprite> = new Map<String, ModchartSprite>();
@@ -412,6 +424,24 @@ class PlayState extends MusicBeatState
 		dadGroup = new FlxSpriteGroup(DAD_X, DAD_Y);
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
 
+		if (ClientPrefs.sus) {
+			switch (curSong)
+			{
+				var diduseshader:Bool = false;
+
+				case 'bopeebo':
+					GlitchShader = new GlitchEffect();
+					GlitchShader.glitchMultiply += 0.4;
+				        shaderFilter.push(new ShaderFilter(GlitchShader.shader));
+					diduseshader = true
+				case 'fresh':
+					VcrShader = new VhsHandler();
+					VcrShade.noise += 0.4;
+				        shaderFilter.push(new ShaderFilter(VcrShader.shader));
+					diduseshader = true
+			}
+		}
+		
 		switch (curStage)
 		{
 			case 'stage': // Week 1
@@ -2470,7 +2500,16 @@ class PlayState extends MusicBeatState
 		{
 			iconP1.swapOldIcon();
 	}*/
+	if (ClientPrefs.sus && diduseshaders) {
+		if (curSong = 'bopeebo') {
+			GlitchShader.update(elapsed);
+		}
+		if (curSong = 'fresh') {
+			VcrShader.update(elapsed);
+		}
+		FlxG.camera.setFilters([shaderFilter[sus]]);	
 
+	}
 		callOnLuas('onUpdate', [elapsed]);
 
 		switch (curStage)

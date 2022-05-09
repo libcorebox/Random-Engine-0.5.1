@@ -92,6 +92,7 @@ class ClientPrefs
 	public static var ratingType:String = 'Random Engine';
 	public static var coloredRatings:Bool = false;
 	public static var coloredCombo:Bool = false;
+	public static var sus:Bool = false;
 	// End
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var keSustains:Bool = false; // i was bored, okay?
@@ -186,6 +187,7 @@ class ClientPrefs
 		FlxG.save.data.fpsRainbow = fpsRainbow;
 		FlxG.save.data.tinyFpsTxt = tinyFpsTxt;
 		FlxG.save.data.msTxt = msTxt;
+		FlxG.save.data.sus = sus;
 		FlxG.save.data.noteSkin = noteSkin;
 		FlxG.save.data.noteSkinOverride = noteSkinOverride;
 		FlxG.save.data.coloredRatings = coloredRatings;
@@ -378,6 +380,10 @@ class ClientPrefs
 		if(FlxG.save.data.msTxt != null) {
 			msTxt = FlxG.save.data.msTxt;
 		}
+		if(FlxG.save.data.sus != null) {
+                        sus = FlxG.save.data.sus;
+                }
+
 		if(FlxG.save.data.noteSkin != null) {
                         noteSkin = FlxG.save.data.noteSkin;
                 }
