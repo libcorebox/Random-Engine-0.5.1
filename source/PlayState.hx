@@ -2497,7 +2497,7 @@ class PlayState extends MusicBeatState
 		{
 			iconP1.swapOldIcon();
 	}*/
-	if (ClientPrefs.sus && diduseshaders) {
+	if (ClientPrefs.sus && diduseshader) {
 		if (curSong = 'bopeebo') {
 			GlitchShader.update(elapsed);
 		}
