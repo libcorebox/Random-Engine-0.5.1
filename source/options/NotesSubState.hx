@@ -60,6 +60,10 @@ class NotesSubState extends MusicBeatSubstate
 		blackBG.alpha = 0.4;
 		add(blackBG);
 
+		var skin:String = 'Arrow_assets';
+		if (ClientPrefs.noteSkin == 'Circle')
+		skin = 'Circle_assets';
+
 		grpNotes = new FlxTypedGroup<FlxSprite>();
 		add(grpNotes);
 		grpNumbers = new FlxTypedGroup<Alphabet>();
@@ -76,7 +80,7 @@ class NotesSubState extends MusicBeatSubstate
 			}
 
 			var note:FlxSprite = new FlxSprite(posX, yPos);
-			note.frames = Paths.getSparrowAtlas('NOTE_assets');
+			note.frames = Paths.getSparrowAtlas(skin);
 			var animations:Array<String> = ['purple0', 'blue0', 'green0', 'red0'];
 			note.animation.addByPrefix('idle', animations[i]);
 			note.animation.play('idle');
