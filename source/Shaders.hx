@@ -736,9 +736,9 @@ void main()
 	it looks cursed when im writting this on git lmao
 		
  */
-class GlitchEffect extends Effect
+class GlitchEffectshit extends Effect
 {
-	public var shader:GlitchShader = new GlitchShader();
+	public var shader:GlitchShaderOriginal = new GlitchShaderOriginal();
 	public var waveSpeed(default, set):Float = 0;
 	public var waveFrequency(default, set):Float = 0;
 	public var waveAmplitude(default, set):Float = 0;
