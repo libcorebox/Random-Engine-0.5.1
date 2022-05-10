@@ -285,10 +285,10 @@ class Note extends FlxSprite
 		{
 			if (isSustainNote)
 			{
-				loadGraphic(Paths.image('noteSkins/pixel/' + blahblah + 'ENDS'));
+				loadGraphic(Paths.image('noteSkins/pixel/' + blahblah + '-ENDS'));
 				width = width / 4;
 				height = height / 2;
-				loadGraphic(Paths.image('noteSkins/pixel/' + blahblah + 'ENDS'), true, Math.floor(width), Math.floor(height));
+				loadGraphic(Paths.image('noteSkins/pixel/' + blahblah + '-ENDS'), true, Math.floor(width), Math.floor(height));
 			}
 			else
 			{
