@@ -122,6 +122,9 @@ class PlayState extends MusicBeatState
 
 	public var vocals:FlxSound;
 
+	var diduseshader:Bool = false;
+	var sus:Int = 0;
+
 	public var dad:Character;
 	public var gf:Character;
 	public var boyfriend:Boyfriend;
@@ -418,9 +421,6 @@ class PlayState extends MusicBeatState
 		boyfriendGroup = new FlxSpriteGroup(BF_X, BF_Y);
 		dadGroup = new FlxSpriteGroup(DAD_X, DAD_Y);
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
-
-		var diduseshader:Bool = false;
-		var sus:Int = 0;
 
 		if (ClientPrefs.sus) {
 			switch (curSong)
