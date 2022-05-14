@@ -22,7 +22,9 @@ class PauseSubState extends MusicBeatSubstate
 	var menuItemsOG:Array<String> = [
 		'Resume',
 		'Restart Song',
-		'Change Difficulty'
+		'Change Difficulty',
+		'Options',
+		'Toggle Botplay'
 		#if android, 'Chart Editor' #end,
 		'Exit to menu'
 	];
@@ -205,6 +207,9 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.instance.botplaySine = 0;
 				case 'Chart Editor':
 					MusicBeatState.switchState(new editors.ChartingState());
+				case "Options":
+					MusicBeatState.switchState(new options.OptionsState(true));
+					FlxG.sound.playMusic(Paths.music('freakyMenu'));
 				case "Exit to menu":
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;

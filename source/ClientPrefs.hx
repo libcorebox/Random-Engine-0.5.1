@@ -25,6 +25,7 @@ class ClientPrefs
 	public static var imagesPersist:Bool = false;
 	public static var ghostTapping:Bool = true;
 	public static var timeBarType:String = 'Time Left';
+	public static var vibration:Bool = false;
 	public static var scoreZoom:Bool = true;
 	public static var noReset:Bool = false;
 	public static var pauseMusic:String = 'Tea Time';
@@ -57,6 +58,12 @@ class ClientPrefs
 	public static var coloredMs:Bool = true;
 	public static var keTimeBar:Bool = false;
 	public static var songInfo:Bool = true;
+	public static var tinyFpsTxt:Bool = false;
+	public static var memPeak:Bool = false;
+	public static var keTitleScreen:Bool = false;
+	public static var fpsRainbow:Bool = false;
+	public static var msTxt:Bool = true;
+	public static var timeBarColor:String = 'White';
 	// Arrow opacity stuff
 	public static var arrowOpacity:Float = 1;
 	public static var opponentArrowOpacity:Float = 1;
@@ -136,6 +143,7 @@ class ClientPrefs
 		FlxG.save.data.henchmenDeath = Achievements.henchmenDeath;
 		FlxG.save.data.hitsoundVolume = hitsoundVolume;
 		FlxG.save.data.pauseMusic = pauseMusic;
+		FlxG.save.data.vibration = vibration;
 		// My Engine stuff
 		// Tabi stuff
 		FlxG.save.data.tabi = tabi;
@@ -157,6 +165,11 @@ class ClientPrefs
 		FlxG.save.data.keTimeBar = keTimeBar;
 		FlxG.save.data.normalCombo = normalCombo;
 		FlxG.save.data.coloredMs = coloredMs;
+		FlxG.save.data.msTxt = msTxt;
+		FlxG.save.data.timeBarColor = timeBarColor;
+		FlxG.save.data.tinyFpsTxt = tinyFpsTxt;
+		FlxG.save.data.memPeak = memPeak;
+		FlxG.save.data.keTitleScreen = keTitleScreen;
 		// Arrow opacity
 		FlxG.save.data.arrowOpacity = arrowOpacity;
 		FlxG.save.data.opponentArrowOpacity = opponentArrowOpacity;
@@ -244,6 +257,10 @@ class ClientPrefs
 		{
 			hideHud = FlxG.save.data.hideHud;
 		}
+		if(FlxG.save.data.vibration != null) 
+		{
+			vibration = FlxG.save.data.vibration;
+		}
 		if (FlxG.save.data.noteOffset != null)
 		{
 			noteOffset = FlxG.save.data.noteOffset;
@@ -320,6 +337,21 @@ class ClientPrefs
 		{
 			scoreType = FlxG.save.data.scoreType;
 		}
+		if (FlxG.save.data.timeBarColor != null)
+                {
+                        timeBarColor = FlxG.save.data.timeBarColor;
+                }
+		if (FlxG.save.data.msTxt != null) {
+			msTxt = FlxG.save.data.msTxt;
+		}
+		if (FlxG.save.data.tinyFpsTxt != null)
+                {
+                        tinyFpsTxt = FlxG.save.data.tinyFpsTxt;
+                }
+		if (FlxG.save.data.memPeak != null)
+                {
+                        memPeak = FlxG.save.data.memPeak
+                }
 		if (FlxG.save.data.scoreStyle != null)
 		{
 			scoreStyle = FlxG.save.data.scoreStyle;
@@ -336,6 +368,10 @@ class ClientPrefs
 		{
 			detachedHUD = FlxG.save.data.detachedHUD;
 		}
+		if (FlxG.save.data.keTitleScreen != null)
+                {
+                        keTitleScreen = FlxG.save.data.keTitleScreen;
+                }
 		// Arrow Opacity
 		if (FlxG.save.data.arrowOpacity != null)
 		{

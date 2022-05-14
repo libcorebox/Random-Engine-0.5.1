@@ -955,10 +955,21 @@ class PlayState extends MusicBeatState
 			'songPercent', 0, 1);
 		timeBar.scrollFactor.set();
 
-		if (ClientPrefs.keTimeBar)
-			timeBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
-		else
-			timeBar.createFilledBar(0xFF000000, 0xFFFFFFFF);
+		switch (ClientPrefs.timeBarColor)
+		{
+			case 'White':
+				timeBar.createFilledBar(FlxColor.BLACK, FlxColor.WHITE);
+			case 'Blue':
+				timeBar.createFilledBar(FlxColor.BLACK, FlxColor.BLUE);
+			case 'Cyan':
+				timeBar.createFilledBar(FlxColor.BLACK, FlxColor.CYAN);
+			case 'Red':
+				timeBar.createFilledBar(FlxColor.BLACK, FlxColor.RED);
+			case 'Green':
+				timeBar.createFilledBar(FlxColor.BLACK, FlxColor.GREEN);
+			default: 
+				timeBar.createFilledBar(FlxColor.BLACK, FlxColor.WHITE);
+		}
 
 		timeBar.numDivisions = 600; // How much lag this causes?? Should i tone it down to idk, 400 or 200?
 		timeBar.alpha = 0;
@@ -1073,7 +1084,7 @@ class PlayState extends MusicBeatState
 			healthBarBG.y = 0.11 * FlxG.height;
 
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
-			'health', 0, 2);
+			'shownHealth', 0, 2);
 		healthBar.scrollFactor.set();
 		// healthBar
 		healthBar.visible = !ClientPrefs.hideHud;
@@ -1805,6 +1816,15 @@ class PlayState extends MusicBeatState
 			#end
 			generateStaticArrows(0);
 			generateStaticArrows(1);
+
+			// Update lane underlay positions AFTER static arrows :)
+
+			laneUnderlay.x = playerStrums.members[0].x - 25;
+			laneUnderlayOpponent.x = opponentStrums.members[0].x - 25;
+
+			laneUnderlay.screenCenter(Y);
+			laneUnderlayOpponent.screenCenter(Y);
+
 			for (i in 0...playerStrums.length)
 			{
 				setOnLuas('defaultPlayerStrumX' + i, playerStrums.members[i].x);
@@ -2013,7 +2033,15 @@ class PlayState extends MusicBeatState
 	private function generateSong(dataPath:String):Void
 	{
 		// FlxG.log.add(ChartParser.parse());
-		songSpeed = SONG.speed * ClientPrefs.getGameplaySetting('scrollspeed', 1);
+		songSpeedType = ClientPrefs.getGameplaySetting('scrolltype','multiplicative');
+
+		switch(songSpeedType)
+		{
+			case "multiplicative":
+				songSpeed = SONG.speed * ClientPrefs.getGameplaySetting('scrollspeed', 1);
+			case "constant":
+				songSpeed = ClientPrefs.getGameplaySetting('scrollspeed', 1);
+		}
 
 		var songData = SONG;
 		Conductor.changeBPM(songData.bpm);
@@ -2603,15 +2631,9 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		if (ratingName == '?')
-		{
-			scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Rating: ' + ratingName;
-		}
-		else
-		{
-			scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Rating: ' + ratingName + ' ('
-				+ Highscore.floorDecimal(ratingPercent * 100, 2) + '%)' + ' - ' + ratingFC; // peeps wanted no integer rating
-		}
+		updateScore();
+                judgementCounter.text = 'Sicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\nE';
+                healthCounter.text = 'Health: ' + Math.round(health * 50) + '%';
 
 		if (botplayTxt.visible)
 		{
@@ -3997,7 +4019,7 @@ class PlayState extends MusicBeatState
 		//              if (msTxt.alpha != 1)  { //bruh is it bad to reput it to 1 if its 1?
 		msTxt.alpha = 1;
 		//              }
-		add(msTxt);
+		if (ClientPrefs.msTxt) add(msTxt);
 
 		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
 		comboSpr.screenCenter();
@@ -4034,7 +4056,7 @@ class PlayState extends MusicBeatState
 		msTxt.updateHitbox();
 		rating.updateHitbox();
 
-		if (!ClientPrefs.detachedCam)
+		if (!ClientPrefs.detachedRatings)
 		{
 			rating.cameras = [camHUD];
 			msTxt.cameras = [camHUD];

@@ -24,6 +24,9 @@ import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
 import Controls;
+#if android
+import android.Hardware;
+#end
 
 using StringTools;
 
@@ -101,10 +104,31 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		var option:Option = new Option('Safe Frames', 'Changes how many frames you have for\nhitting a note earlier or late.', 'safeFrames', 'float', 10);
 		option.scrollSpeed = 5;
 		option.minValue = 2;
-		option.maxValue = 16;
+		option.maxValue = 10;
 		option.changeValue = 0.1;
 		addOption(option);
 
+		#if android
+		var option:Option = new Option('GameOver Vibration',
+			'If unchecked, will make the game to vibrate when you die.',
+			'vibration',
+			'bool',
+			false);
+		addOption(option);
+		option.onChange = onChangeGameOverVibration;
+		#end
+
 		super();
 	}
+
+	#if android
+	function onChangeGameOverVibration()
+	{
+		if(ClientPrefs.vibration)
+		{
+			Hardware.vibrate(500);
+		}
+	}
+	#end
+
 }

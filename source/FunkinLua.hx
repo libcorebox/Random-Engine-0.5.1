@@ -34,6 +34,9 @@ import DialogueBoxPsych;
 import Discord;
 #end
 import Shaders;
+#if android
+import android.Hardware;
+#end
 
 using StringTools;
 
@@ -1629,6 +1632,12 @@ class FunkinLua
 				#end
 			});
 
+		Lua_helper.add_callback(lua, "vibration", function(milliseconds:Int) {
+			#if android
+			Hardware.vibrate(milliseconds);
+			#end
+		});
+
 		// LUA TEXTS
 		Lua_helper.add_callback(lua, "makeLuaText", function(tag:String, text:String, width:Int, x:Float, y:Float)
 		{
@@ -1949,7 +1958,7 @@ class FunkinLua
 			PlayState.instance.addShaderToCamera(camera, new TiltshiftEffect(blurAmount,center));
 			
 		});
-		Lua_helper.add_callback(lua, "addVCREffect", function(camera:String,glitchFactor:Float = 0.0,distortion:Bool=true,perspectiveOn:Bool=true,vignetteMoving:Bool=true) {
+/*		Lua_helper.add_callback(lua, "addVCREffect", function(camera:String,glitchFactor:Float = 0.0,distortion:Bool=true,perspectiveOn:Bool=true,vignetteMoving:Bool=true) {
 			
 			PlayState.instance.addShaderToCamera(camera, new VCRDistortionEffect(glitchFactor,distortion,perspectiveOn,vignetteMoving));
 			
@@ -1958,7 +1967,8 @@ class FunkinLua
 			
 			PlayState.instance.addShaderToCamera(camera, new GlitchEffect(waveSpeed,waveFrq,waveAmp));
 			
-		});
+		});  
+*/
 		Lua_helper.add_callback(lua, "addPulseEffect", function(camera:String,waveSpeed:Float = 0.1,waveFrq:Float = 0.1,waveAmp:Float = 0.1) {
 			
 			PlayState.instance.addShaderToCamera(camera, new PulseEffect(waveSpeed,waveFrq,waveAmp));
