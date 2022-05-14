@@ -24,7 +24,7 @@ class PauseSubState extends MusicBeatSubstate
 		'Restart Song',
 		'Change Difficulty',
 		'Options',
-		'Toggle Botplay',x
+		'Toggle Botplay',
 		'Exit to menu'
 	];
 	var difficultyChoices = [];
