@@ -101,7 +101,7 @@ class FPS extends TextField
 				memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
 				if (memoryMegas > memPeak) memPeak = memoryMegas;
 				text += "\nMemory: " + memoryMegas + " MB";
-				if (ClientPrefs.memoryCounterPeak)
+				if (ClientPrefs.memPeak)
 				text += "\nPeak: " + memPeak + " MB";			
 			}
 
