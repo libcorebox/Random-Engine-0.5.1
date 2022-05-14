@@ -49,15 +49,6 @@ class ReGameplaySettingsSubState extends BaseOptionsMenu
 		option.maxValue = 300;
 		option.displayFormat = '%v MAX';
 
-		var option:Option = new Option('Hitsound Volume',
-			'Funny notes does \"Tick!\" when you hit them."', 'hitsoundVolume', 'percent', 0);
-		addOption(option);
-		option.scrollSpeed = 1.6;
-		option.minValue = 0.0;
-		option.maxValue = 1;
-		option.changeValue = 0.1;
-		option.decimals = 1;
-
 		super();
 	}
 }
