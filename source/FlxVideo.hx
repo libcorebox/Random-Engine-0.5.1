@@ -4,7 +4,7 @@ import openfl.net.NetStream;
 import openfl.events.NetStatusEvent;
 import openfl.media.Video;
 #elseif !web
-import vlc.MP4Handler;
+import vlc.VideoHandler;
 #end
 import flixel.FlxBasic;
 import flixel.FlxG;
@@ -14,7 +14,7 @@ class FlxVideo extends FlxBasic {
 	public var finishCallback:Void->Void = null;
 	
 	#if !web
-	public static var video:MP4Handler;
+	public static var video:VideoHandler;
 	#end
 
 	public function new(name:String) {
@@ -48,7 +48,7 @@ class FlxVideo extends FlxBasic {
 		#elseif !web
 		// by Polybius, check out hxCodec! https://github.com/polybiusproxy/hxCodec
 
-		video = new MP4Handler();
+		video = new VideoHandler();
 		video.finishCallback = function()
 		{
 				if (finishCallback != null){
