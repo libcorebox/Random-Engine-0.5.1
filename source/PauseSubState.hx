@@ -24,8 +24,7 @@ class PauseSubState extends MusicBeatSubstate
 		'Restart Song',
 		'Change Difficulty',
 		'Options',
-		'Toggle Botplay'
-		#if android, 'Chart Editor' #end,
+		'Toggle Botplay',
 		'Exit to menu'
 	];
 	var difficultyChoices = [];
