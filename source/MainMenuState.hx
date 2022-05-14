@@ -20,6 +20,9 @@ import lime.app.Application;
 import Achievements;
 import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
+#if android
+import android.Hardware;
+#end
 
 using StringTools;
 
@@ -165,7 +168,7 @@ class MainMenuState extends MusicBeatState
 		#end
 
 		#if android
-		addVirtualPad(UP_DOWN, A_B_E);
+		addVirtualPad(UP_DOWN, A_B);
 		#end
 
 		super.create();
@@ -270,8 +273,15 @@ class MainMenuState extends MusicBeatState
 			}
 			else if (FlxG.keys.anyJustPressed(debugKeys) #if android || _virtualpad.buttonE.justPressed #end)
 			{
-				selectedSomethin = true;
-				MusicBeatState.switchState(new MasterEditorMenu());
+//				selectedSomethin = true;
+//				MusicBeatState.switchState(new MasterEditorMenu());
+				#if android
+			        if(ClientPrefs.vibration)
+		                {
+					Hardware.vibrate(300);
+		                }
+	        	        #end
+				
 			}
 		}
 
