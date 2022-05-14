@@ -7,6 +7,7 @@ import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
+import flixel.addons.transition.FlxTransitionableState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
@@ -221,7 +222,12 @@ class NotesSubState extends MusicBeatSubstate
 			if (!changingNote)
 			{
 				ClientPrefs.saveSettings();
-				MusicBeatState.switchState(FlxG.state);
+				#if android
+	                        FlxTransitionableState.skipNextTransOut = true;
+	                        FlxG.resetState();
+	                        #else
+		                close();
+	                        #end
 			}
 			else
 			{
