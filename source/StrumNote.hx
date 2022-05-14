@@ -3,7 +3,6 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
-import sys.FileSystem;
 
 using StringTools;
 
@@ -40,13 +39,9 @@ class StrumNote extends FlxSprite
 		this.noteData = leData;
 		super(x, y);
 
-		var skin:String = 'Arrow_assets';
-
-		if (PlayState.SONG.arrowSkin == null && PlayState.SONG.arrowSkin.length < 1 && ClientPrefs.noteSkin == 'Circle')
-			skin = 'Circle_assets';
-		if (PlayState.SONG.arrowSkin != null && PlayState.SONG.arrowSkin.length > 1) 
+		var skin:String = 'NOTE_assets';
+		if (PlayState.SONG.arrowSkin != null && PlayState.SONG.arrowSkin.length > 1)
 			skin = PlayState.SONG.arrowSkin;
-
 		texture = skin; // Load texture and anims
 
 		scrollFactor.set();
@@ -60,11 +55,10 @@ class StrumNote extends FlxSprite
 
 		if (PlayState.isPixelStage)
 		{
-
-			loadGraphic(Paths.image('noteSkins/pixel/' + texture));
+			loadGraphic(Paths.image('pixelUI/' + texture));
 			width = width / 4;
 			height = height / 5;
-			loadGraphic(Paths.image('noteSkins/pixel/' + texture), true, Math.floor(width), Math.floor(height));
+			loadGraphic(Paths.image('pixelUI/' + texture), true, Math.floor(width), Math.floor(height));
 
 			antialiasing = false;
 			setGraphicSize(Std.int(width * PlayState.daPixelZoom));
@@ -95,7 +89,7 @@ class StrumNote extends FlxSprite
 		}
 		else
 		{
-			frames = Paths.getSparrowAtlas('noteSkins/' + texture);
+			frames = Paths.getSparrowAtlas(texture);
 			animation.addByPrefix('green', 'arrowUP');
 			animation.addByPrefix('blue', 'arrowDOWN');
 			animation.addByPrefix('purple', 'arrowLEFT');
@@ -186,4 +180,3 @@ class StrumNote extends FlxSprite
 		}
 	}
 }
-

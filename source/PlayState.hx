@@ -57,8 +57,6 @@ import sys.FileSystem;
 import Shaders;
 import openfl.filters.ShaderFilter;
 import openfl.filters.BitmapFilter;
-import GlitchEffect.GlitchShader;
-import VcrShader.VhsHandler;
 
 using StringTools;
 
@@ -67,16 +65,24 @@ class PlayState extends MusicBeatState
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
+	public static var ratingStuff:Array<Dynamic> = [
+		['F', 0.2], // From 0% to 19%
+		['F+', 0.4], // From 20% to 39%
+		['C', 0.5], // From 40% to 49%
+		['C+', 0.6], // From 50% to 59%
+		['B', 0.69], // From 60% to 68%
+		['B+', 0.7], // 69%
+		['A', 0.8], // From 70% to 79%
+		['A+', 0.9], // From 80% to 89%
+		['S', 1], // From 90% to 99%
+		['P', 1] // The value on this one isn't used actually, since Perfect is always "1"
+	];
+
 	// SHADERS
 	public var camGameShaders:Array<ShaderEffect> = [];
 	public var camHUDShaders:Array<ShaderEffect> = [];
 	public var camOtherShaders:Array<ShaderEffect> = [];
 	public var shaderUpdates:Array<Float->Void> = [];
-
-	public var shaderFilter:Array<ShaderFilter> = [];
-
-	public var GlitchShader:GlitchEffect = null;
-	public var VcrShader:VhsHandler = null;
 
 	public var modchartTweens:Map<String, FlxTween> = new Map<String, FlxTween>();
 	public var modchartSprites:Map<String, ModchartSprite> = new Map<String, ModchartSprite>();
@@ -105,7 +111,6 @@ class PlayState extends MusicBeatState
 	public var GF_Y:Float = 130;
 
 	public var songSpeedTween:FlxTween;
-	public var songSpeedType:String = "multiplicative";
 	public var songSpeed(default, set):Float = 1;
 
 	public var boyfriendGroup:FlxSpriteGroup;
@@ -121,9 +126,6 @@ class PlayState extends MusicBeatState
 	public static var storyDifficulty:Int = 1;
 
 	public var vocals:FlxSound;
-
-	var diduseshader:Bool = false;
-	var sus:Int = 0;
 
 	public var dad:Character;
 	public var gf:Character;
@@ -190,8 +192,8 @@ class PlayState extends MusicBeatState
 	public var botplaySine:Float = 0;
 	public var botplayTxt:FlxText;
 	// lane underlay stuff
-	public var laneUnderlay:FlxSprite;
-	public var laneUnderlayOpponent:FlxSprite;
+	public var laneunderlay:FlxSprite;
+	public var laneunderlayOpponent:FlxSprite;
 
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
@@ -422,23 +424,6 @@ class PlayState extends MusicBeatState
 		dadGroup = new FlxSpriteGroup(DAD_X, DAD_Y);
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
 
-		if (ClientPrefs.sus) {
-			switch (curSong)
-			{
-				case 'bopeebo':
-					GlitchShader = new GlitchEffect();
-					GlitchShader.glitchMultiply += 0.4;
-				        shaderFilter.push(new ShaderFilter(GlitchShader.shader));
-					diduseshader = true;
-				case 'fresh':
-					VcrShader = new VhsHandler();
-					VcrShader.noise += 0.4;
-				        shaderFilter.push(new ShaderFilter(VcrShader.shader));
-					diduseshader = true;
-					sus = 1;
-			}
-		}
-		
 		switch (curStage)
 		{
 			case 'stage': // Week 1
@@ -918,18 +903,18 @@ class PlayState extends MusicBeatState
 			strumLine.y = FlxG.height - 150;
 		strumLine.scrollFactor.set();
 
-		laneUnderlayOpponent = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);
-		laneUnderlayOpponent.alpha = ClientPrefs.opponentLaneOpacity;
-		laneUnderlayOpponent.color = FlxColor.BLACK;
-		laneUnderlayOpponent.scrollFactor.set();
+		laneunderlayOpponent = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);
+		laneunderlayOpponent.alpha = ClientPrefs.opponentLaneOpacity;
+		laneunderlayOpponent.color = FlxColor.BLACK;
+		laneunderlayOpponent.scrollFactor.set();
 
-		laneUnderlay = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);
-		laneUnderlay.alpha = ClientPrefs.laneOpacity;
-		laneUnderlay.color = FlxColor.BLACK;
-		laneUnderlay.scrollFactor.set();
-		add(laneUnderlayOpponent);
+		laneunderlay = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);
+		laneunderlay.alpha = ClientPrefs.laneOpacity;
+		laneunderlay.color = FlxColor.BLACK;
+		laneunderlay.scrollFactor.set();
+		add(laneunderlayOpponent);
 
-		add(laneUnderlay);
+		add(laneunderlay);
 
 		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
 		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 32);
@@ -945,7 +930,6 @@ class PlayState extends MusicBeatState
 		{
 			timeTxt.text = SONG.song;
 		}
-
 		updateTime = showTime;
 
 		if (ClientPrefs.keTimeBar)
@@ -966,27 +950,16 @@ class PlayState extends MusicBeatState
 			timeBarBG.screenCenter(X);
 
 		add(timeBarBG);
-		
 
 		timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this,
 			'songPercent', 0, 1);
 		timeBar.scrollFactor.set();
 
-		switch (ClientPrefs.timeBarColor)
-		{
-			case 'White':
-			timeBar.createFilledBar(FlxColor.BLACK, FlxColor.WHITE);
-			case 'Blue':
-			timeBar.createFilledBar(FlxColor.BLACK, FlxColor.BLUE);
-			case 'Cyan':
-			timeBar.createFilledBar(FlxColor.BLACK, FlxColor.CYAN);
-			case 'Red':
-			timeBar.createFilledBar(FlxColor.BLACK, FlxColor.RED);
-			case 'Green':
-			timeBar.createFilledBar(FlxColor.BLACK, FlxColor.GREEN);
-			default: 
-			timeBar.createFilledBar(FlxColor.BLACK, FlxColor.WHITE);
-		}
+		if (ClientPrefs.keTimeBar)
+			timeBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
+		else
+			timeBar.createFilledBar(0xFF000000, 0xFFFFFFFF);
+
 		timeBar.numDivisions = 600; // How much lag this causes?? Should i tone it down to idk, 400 or 200?
 		timeBar.alpha = 0;
 		timeBar.visible = showTime;
@@ -1100,7 +1073,7 @@ class PlayState extends MusicBeatState
 			healthBarBG.y = 0.11 * FlxG.height;
 
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
-			'shownHealth', 0, 2);
+			'health', 0, 2);
 		healthBar.scrollFactor.set();
 		// healthBar
 		healthBar.visible = !ClientPrefs.hideHud;
@@ -1167,9 +1140,9 @@ class PlayState extends MusicBeatState
 		if (!ClientPrefs.healthCounter)
 			remove(healthCounter);
 		if (ClientPrefs.laneOpacity == 0)
-			remove(laneUnderlay);
+			remove(laneunderlay);
 		if (ClientPrefs.opponentLaneOpacity == 0)
-			remove(laneUnderlayOpponent);
+			remove(laneunderlayOpponent);
 		if (!ClientPrefs.songInfo)
 			remove(songInfo);
 		if (ClientPrefs.scoreType == "Disabled" || ClientPrefs.hideHud)
@@ -1203,8 +1176,8 @@ class PlayState extends MusicBeatState
 			timeBarBG.cameras = [camHUD];
 			timeTxt.cameras = [camHUD];
 			judgementCounter.cameras = [camHUD];
-			laneUnderlay.cameras = [camHUD];
-			laneUnderlayOpponent.cameras = [camHUD];
+			laneunderlay.cameras = [camHUD];
+			laneunderlayOpponent.cameras = [camHUD];
 			doof.cameras = [camHUD];
 		}
 
@@ -1338,12 +1311,6 @@ class PlayState extends MusicBeatState
 		{
 			CoolUtil.precacheMusic(Paths.formatToSongPath(ClientPrefs.pauseMusic));
 		}
-
-		CoolUtil.precacheSound('fnf_loss_sfx');
-		CoolUtil.precacheSound('gameOverEnd');
-		CoolUtil.precacheMusic('gameOver');
-		
-
 
 		#if desktop
 		// Updating Discord Rich Presence.
@@ -1485,7 +1452,7 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
-	public function setScore()
+	public function updateScore()
         {
 		var lol:String = 'Score:' + songScore; //simple fix
 		scoreTxt.text = lol;
@@ -1838,16 +1805,6 @@ class PlayState extends MusicBeatState
 			#end
 			generateStaticArrows(0);
 			generateStaticArrows(1);
-
-			// Update lane underlay positions AFTER static arrows :)
-
-			laneUnderlay.x = playerStrums.members[0].x - 25;
-			laneUnderlayOpponent.x = opponentStrums.members[0].x - 25;
-
-			laneUnderlay.screenCenter(Y);
-			laneUnderlayOpponent.screenCenter(Y);
-
-
 			for (i in 0...playerStrums.length)
 			{
 				setOnLuas('defaultPlayerStrumX' + i, playerStrums.members[i].x);
@@ -2056,15 +2013,7 @@ class PlayState extends MusicBeatState
 	private function generateSong(dataPath:String):Void
 	{
 		// FlxG.log.add(ChartParser.parse());
-		songSpeedType = ClientPrefs.getGameplaySetting('scrolltype','multiplicative');
-
-		switch(songSpeedType)
-		{
-			case "multiplicative":
-				songSpeed = SONG.speed * ClientPrefs.getGameplaySetting('scrollspeed', 1);
-			case "constant":
-				songSpeed = ClientPrefs.getGameplaySetting('scrollspeed', 1);
-		}
+		songSpeed = SONG.speed * ClientPrefs.getGameplaySetting('scrollspeed', 1);
 
 		var songData = SONG;
 		Conductor.changeBPM(songData.bpm);
@@ -2497,16 +2446,7 @@ class PlayState extends MusicBeatState
 		{
 			iconP1.swapOldIcon();
 	}*/
-	if (ClientPrefs.sus && diduseshader = true) {
-		if (curSong = 'bopeebo') {
-			GlitchShader.update(elapsed);
-		}
-		if (curSong = 'fresh') {
-			VcrShader.update(elapsed);
-		}
-		FlxG.camera.setFilters([shaderFilter[sus]]);	
 
-	}
 		callOnLuas('onUpdate', [elapsed]);
 
 		switch (curStage)
@@ -2663,9 +2603,15 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		setScore();
-                judgementCounter.text = 'Sicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\nE';
-                healthCounter.text = 'Health: ' + Math.round(health * 50) + '%';
+		if (ratingName == '?')
+		{
+			scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Rating: ' + ratingName;
+		}
+		else
+		{
+			scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Rating: ' + ratingName + ' ('
+				+ Highscore.floorDecimal(ratingPercent * 100, 2) + '%)' + ' - ' + ratingFC; // peeps wanted no integer rating
+		}
 
 		if (botplayTxt.visible)
 		{
@@ -4038,12 +3984,9 @@ class PlayState extends MusicBeatState
 				case 'sick':
 					msTxt.color = FlxColor.CYAN;
 			}
-
-
+			if (cpuControlled)
+				msTxt.color = FlxColor.ORANGE;
 		}
-		if (cpuControlled)
-			msTxt.color = FlxColor.ORANGE;
-		
 
 		msTxt.borderStyle = OUTLINE;
 		msTxt.borderSize = 1;
@@ -4051,10 +3994,9 @@ class PlayState extends MusicBeatState
 		msTxt.text = msTiming + " ms";
 		msTxt.size = 20;
 
-//              if (msTxt.alpha != 1)  { //bruh is it bad to reput it to 1 if its 1?
-		msTxt.alpha = 1; 
-//		let me test this
-//              }
+		//              if (msTxt.alpha != 1)  { //bruh is it bad to reput it to 1 if its 1?
+		msTxt.alpha = 1;
+		//              }
 		add(msTxt);
 
 		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
@@ -4092,31 +4034,13 @@ class PlayState extends MusicBeatState
 		msTxt.updateHitbox();
 		rating.updateHitbox();
 
-		if (!ClientPrefs.detachedRatings)
+		if (!ClientPrefs.detachedCam)
 		{
 			rating.cameras = [camHUD];
 			msTxt.cameras = [camHUD];
 			comboSpr.cameras = [camHUD];
 		}
-		
-/*		if (ClientPrefs.coloredRatings)
-		{
-			switch (daRating)
-                        {
-                        case 'Sick':
-                        rating.color = FlxColor.CYAN;
 
-                        case 'Good':
-                        rating.color = FlxColor.GREEN;
-
-                        case 'Bad':
-                        rating.color = FlxColor.RED;
-
-                        case 'Shit':
-                        rating.color = FlxColor.GRAY;
-			}
-                } fuck i need to fix this
-*/
 		var seperatedScore:Array<Int> = [];
 
 		var comboSplit:Array<String> = (combo + "").split('');
@@ -4148,25 +4072,6 @@ class PlayState extends MusicBeatState
 			if (!ClientPrefs.detachedRatings)
 				numScore.cameras = [camHUD];
 
-/*			if (ClientPrefs.coloredCombo) 
-			{
-				switch (daRating)
-                                {
-                                      case 'Sick':
-                                      numScore.color = FlxColor.CYAN;
-
-                                      case 'Good':
-                                      numScore.color = FlxColor.GREEN;
-
-                                      case 'Bad':
-                                      numScore.color = FlxColor.RED;
-
-                                      case 'Shit':
-                                      numScore.color = FlxColor.GRAY;
-				}
-
-                       } fuck i need to fix this x2
-*/
 			numScore.screenCenter();
 			numScore.x = coolText.x + (43 * daLoop) - 90;
 			numScore.y += 80;
@@ -5232,6 +5137,7 @@ class PlayState extends MusicBeatState
 	public var ratingName:String = '?';
 	public var ratingPercent:Float;
 	public var ratingFC:String;
+
 	public function RecalculateRating()
 	{
 		setOnLuas('score', songScore);
@@ -5247,29 +5153,20 @@ class PlayState extends MusicBeatState
 			{
 				// Rating Percent
 				ratingPercent = Math.min(1, Math.max(0, totalNotesHit / totalPlayed));
-				
 				// trace((totalNotesHit / totalPlayed) + ', Total: ' + totalPlayed + ', notes hit: ' + totalNotesHit);
-				var ratings:Array<Dynamic> = Ratings.reRatingStuff;
-				switch (ClientPrefs.ratingType)
-				{
-					case 'Psych Engine':
-						ratings = Ratings.peRatingStuff;
-					case 'Kade Engine':
-						ratings = Ratings.keRatingStuff;
-				}
+
 				// Rating Name
 				if (ratingPercent >= 1)
 				{
-					var dummyRating = ratings[ratings.length - 1][0];
-					ratingName = dummyRating;
+					ratingName = ratingStuff[ratingStuff.length - 1][0]; // Uses last string
 				}
 				else
 				{
-					for (i in 0...ratings.length - 1)
+					for (i in 0...ratingStuff.length - 1)
 					{
-						if (ratingPercent < ratings[i][1])
+						if (ratingPercent < ratingStuff[i][1])
 						{
-							ratingName = ratings[i][0];
+							ratingName = ratingStuff[i][0];
 							break;
 						}
 					}

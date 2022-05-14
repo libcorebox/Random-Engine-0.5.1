@@ -33,24 +33,13 @@ class ClientPrefs
 	public static var controllerMode:Bool = #if desktop false #else true #end;
 	public static var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,
-		'scrolltype' => 'multiplicative',
 		'songspeed' => 1.0,
 		'healthgain' => 1.0,
 		'healthloss' => 1.0,
 		'instakill' => false,
 		'practice' => false,
 		'botplay' => false,
-		'opponentplay' => false,
-
-		// difficulty modifiers
-		'noHolds' => false, // removes all holds from the chart
-		'noChords' => false, // removes all jumps, hands, and quads from the chart
-		'jackThreshold' => '16th',
-
-		// other chart modifiers
-		'mirror' => false,
-		'shuffle' => false,
-		'right' => false
+		'opponentplay' => false
 	];
 
 	// My Engine Stuff
@@ -68,14 +57,6 @@ class ClientPrefs
 	public static var coloredMs:Bool = true;
 	public static var keTimeBar:Bool = false;
 	public static var songInfo:Bool = true;
-//	public static var keTimeBar:Bool = false;
-	public static var keTitleScreen:Bool = false;
-	public static var fpsRainbow:Bool = false;
-	public static var tinyFpsTxt:Bool = false;
-	public static var msTxt:Bool = true;
-	public static var noteSkin:String = 'Arrow';
-	public static var noteSkinOverride:Bool = false;
-	public static var timeBarColor:String = 'White';
 	// Arrow opacity stuff
 	public static var arrowOpacity:Float = 1;
 	public static var opponentArrowOpacity:Float = 1;
@@ -85,14 +66,10 @@ class ClientPrefs
 	// Misc Stuff
 	public static var antimash:Bool = true;
 	public static var memoryCounter:Bool = false;
-	public static var memoryCounterPeak:Bool = false;
 	public static var playHitSound:Bool = false;
 	public static var normalCombo:Bool = false;
 	public static var sustainhp:Bool = true;
-	public static var ratingType:String = 'Random Engine';
-	public static var coloredRatings:Bool = false;
-	public static var coloredCombo:Bool = false;
-	public static var sus:Bool = false;
+
 	// End
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var keSustains:Bool = false; // i was bored, okay?
@@ -165,11 +142,9 @@ class ClientPrefs
 		FlxG.save.data.maxHp = maxHp;
 		// Misc stuff
 		FlxG.save.data.memoryCounter = memoryCounter;
-		FlxG.save.data.memoryCounterPeak = memoryCounterPeak;
 		FlxG.save.data.antimash = antimash;
 		FlxG.save.data.playHitSound = playHitSound;
 		FlxG.save.data.sustainhp = sustainhp;
-		FlxG.save.data.ratingType = ratingType;
 		// UI stuff
 		FlxG.save.data.judgements = judgements;
 		FlxG.save.data.healthCounter = healthCounter;
@@ -180,18 +155,8 @@ class ClientPrefs
 		FlxG.save.data.detachedHUD = detachedHUD;
 		FlxG.save.data.songInfo = songInfo;
 		FlxG.save.data.keTimeBar = keTimeBar;
-		FlxG.save.data.timeBarColor = timeBarColor;
-		FlxG.save.data.keTitleScreen = keTitleScreen;
 		FlxG.save.data.normalCombo = normalCombo;
 		FlxG.save.data.coloredMs = coloredMs;
-		FlxG.save.data.fpsRainbow = fpsRainbow;
-		FlxG.save.data.tinyFpsTxt = tinyFpsTxt;
-		FlxG.save.data.msTxt = msTxt;
-		FlxG.save.data.sus = sus;
-		FlxG.save.data.noteSkin = noteSkin;
-		FlxG.save.data.noteSkinOverride = noteSkinOverride;
-		FlxG.save.data.coloredRatings = coloredRatings;
-		FlxG.save.data.coloredCombo = coloredCombo;
 		// Arrow opacity
 		FlxG.save.data.arrowOpacity = arrowOpacity;
 		FlxG.save.data.opponentArrowOpacity = opponentArrowOpacity;
@@ -330,10 +295,6 @@ class ClientPrefs
 		{
 			tabi = FlxG.save.data.tabi;
 		}
-		if (FlxG.save.data.ratingType != null)
-                {
-                        ratingType = FlxG.save.data.ratingType;
-                }
 		if (FlxG.save.data.maxHp != null)
 		{
 			maxHp = FlxG.save.data.maxHp;
@@ -355,40 +316,9 @@ class ClientPrefs
                 {
                         coloredMs = FlxG.save.data.coloredMs;
                 }
-		if (FlxG.save.data.keTitleScreen != null)
-                {
-                        keTitleScreen = FlxG.save.data.keTitleScreen;
-                }
 		if (FlxG.save.data.scoreType != null)
 		{
 			scoreType = FlxG.save.data.scoreType;
-		}
-		if (FlxG.save.data.coloredRatings != null)
-		{
-			coloredRatings = FlxG.save.data.coloredRatings;
-		}
-		if (FlxG.save.data.timeBarColor != null)
-                {
-                        timeBarColor = FlxG.save.data.timeBarColor;
-                }
-		if(FlxG.save.data.fpsRainbow != null) {
-			fpsRainbow = FlxG.save.data.fpsRainbow;
-		}
-		if(FlxG.save.data.tinyFpsTxt != null) {
-			tinyFpsTxt = FlxG.save.data.tinyFpsTxt;
-		}
-		if(FlxG.save.data.msTxt != null) {
-			msTxt = FlxG.save.data.msTxt;
-		}
-		if(FlxG.save.data.sus != null) {
-                        sus = FlxG.save.data.sus;
-                }
-
-		if(FlxG.save.data.noteSkin != null) {
-                        noteSkin = FlxG.save.data.noteSkin;
-                }
-		if(FlxG.save.data.noteSkinOverride != null) {
-                        noteSkinOverride = FlxG.save.data.noteSkinOverride;        
 		}
 		if (FlxG.save.data.scoreStyle != null)
 		{
@@ -401,10 +331,6 @@ class ClientPrefs
 		if (FlxG.save.data.detachedRatings != null)
 		{
 			detachedRatings = FlxG.save.data.detachedRatings;
-		}
-		if (FlxG.save.data.coloredCombo != null)
-		{
-			coloredCombo = FlxG.save.data.coloredCombo;
 		}
 		if (FlxG.save.data.detachedHUD != null)
 		{
@@ -433,10 +359,6 @@ class ClientPrefs
 		{
 			memoryCounter = FlxG.save.data.memoryCounter;
 		}
-		if (FlxG.save.data.memoryCounterPeak != null)
-                {
-                        memoryCounterPeak = FlxG.save.data.memoryCounterPeak;
-                }
 		if (FlxG.save.data.antimash != null)
 		{
 			antimash = FlxG.save.data.antimash;

@@ -7,7 +7,6 @@ import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import flash.display.BitmapData;
 import editors.ChartingState;
-import sys.FileSystem;
 
 using StringTools;
 
@@ -233,7 +232,7 @@ class Note extends FlxSprite
 			{
 				scale.y *= PlayState.daPixelZoom;
 				updateHitbox();
-				}
+			}
 		}
 		else if (!isSustainNote)
 		{
@@ -255,19 +254,10 @@ class Note extends FlxSprite
 		if (texture.length < 1)
 		{
 			skin = PlayState.SONG.arrowSkin;
-
-			if (skin == null || skin.length < 1) {
-
-				if (ClientPrefs.noteSkin == 'Circle')
-	                        skin = 'Arrow_assets';
-
-			}
 			if (skin == null || skin.length < 1)
-				skin = 'Arrow_assets';
-			if (ClientPrefs.noteSkin == 'Circle') 
-				skin = 'Circles_assets';
-			
-			
+			{
+				skin = 'NOTE_assets';
+			}
 		}
 
 		var animName:String = null;
@@ -285,17 +275,17 @@ class Note extends FlxSprite
 		{
 			if (isSustainNote)
 			{
-				loadGraphic(Paths.image('noteSkins/pixel/' + blahblah + '-ENDS'));
+				loadGraphic(Paths.image('pixelUI/' + blahblah + 'ENDS'));
 				width = width / 4;
 				height = height / 2;
-				loadGraphic(Paths.image('noteSkins/pixel/' + blahblah + '-ENDS'), true, Math.floor(width), Math.floor(height));
+				loadGraphic(Paths.image('pixelUI/' + blahblah + 'ENDS'), true, Math.floor(width), Math.floor(height));
 			}
 			else
 			{
-				loadGraphic(Paths.image('noteSkins/pixel/' + blahblah));
+				loadGraphic(Paths.image('pixelUI/' + blahblah));
 				width = width / 4;
 				height = height / 5;
-				loadGraphic(Paths.image('noteSkins/pixel/' + blahblah), true, Math.floor(width), Math.floor(height));
+				loadGraphic(Paths.image('pixelUI/' + blahblah), true, Math.floor(width), Math.floor(height));
 			}
 			setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 			loadPixelNoteAnims();
@@ -303,7 +293,7 @@ class Note extends FlxSprite
 		}
 		else
 		{
-			frames = Paths.getSparrowAtlas('noteSkins/' + blahblah);
+			frames = Paths.getSparrowAtlas(blahblah);
 			loadNoteAnims();
 			antialiasing = ClientPrefs.globalAntialiasing;
 		}
