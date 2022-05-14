@@ -3,22 +3,18 @@ import openfl.net.NetConnection;
 import openfl.net.NetStream;
 import openfl.events.NetStatusEvent;
 import openfl.media.Video;
-#else
-import openfl.events.Event;
-import vlc.VLCBitmap;
+#elseif !web
+import vlc.VideoHandler;
 #end
 import flixel.FlxBasic;
 import flixel.FlxG;
-#if android
-import android.AndroidTools;
-#end
 
 class FlxVideo extends FlxBasic {
 	#if VIDEOS_ALLOWED
 	public var finishCallback:Void->Void = null;
 	
 	#if !web
-	public static var vlcBitmap:VLCBitmap;
+	public static var video:VideoHandler;
 	#end
 
 	public function new(name:String) {
@@ -47,67 +43,20 @@ class FlxVideo extends FlxBasic {
 				if(finishCallback != null) finishCallback();
 			}
 		});
-		netStream.play(name);        
+		netStream.play(name);
 
 		#elseif !web
+		// by Polybius, check out hxCodec! https://github.com/polybiusproxy/hxCodec
 
-		vlcBitmap = new VLCBitmap();
-
-		vlcBitmap.onComplete = onVLCComplete;
-		vlcBitmap.onError = onVLCError;
-
-		FlxG.stage.addEventListener(Event.ENTER_FRAME, fixVolume);
-		vlcBitmap.repeat = 0;
-		fixVolume(null);
-
-		FlxG.addChildBelowMouse(vlcBitmap);
-		vlcBitmap.play(createUrl(name));
+		video = new VideoHandler();
+		video.finishCallback = function()
+		{
+				if (finishCallback != null){
+			        finishCallback();
+		        }
+		}
+		video.playVideo(name);
 		#end
 	}
-
-	#if !web
-	function createUrl(name:String)
-	{
-		#if android
-		var checkedFile:String = AndroidTools.getFileUrl(name); // in android you need to put the location manualy for external storage thing
-		#else
-		var checkedFile:String = "file:///" + Sys.getCwd() + name; // this is how the video location needs to be
-		#end
-		return checkedFile;
-	}
-
-	function fixVolume(e:Event)
-	{
-		vlcBitmap.volume = 0;
-		if(!FlxG.sound.muted && FlxG.sound.volume > 0.01) { //Kind of fixes the volume being too low when you decrease it
-			vlcBitmap.volume = FlxG.sound.volume;
-		}
-	}
-
-	public function onVLCComplete()
-	{
-		// Clean player, just in case!
-		vlcBitmap.dispose();
-
-		if (FlxG.game.contains(vlcBitmap))
-		{
-			FlxG.game.removeChild(vlcBitmap);
-		}
-
-		if (finishCallback != null)
-		{
-			finishCallback();
-		}
-	}
-
-	
-	function onVLCError()
-		{
-			trace("An error has occured while trying to load the video.\nPlease, check if the file you're loading exists.");
-			if (finishCallback != null) {
-				finishCallback();
-			}
-		}
-	#end
 	#end
 }
