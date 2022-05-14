@@ -350,7 +350,7 @@ class ClientPrefs
                 }
 		if (FlxG.save.data.memPeak != null)
                 {
-                        memPeak = FlxG.save.data.memPeak
+                        memPeak = FlxG.save.data.memPeak;
                 }
 		if (FlxG.save.data.scoreStyle != null)
 		{

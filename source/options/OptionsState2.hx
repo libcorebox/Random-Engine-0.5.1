@@ -126,6 +126,8 @@ class OptionsState2 extends MusicBeatState
 		}
 		if (controls.UI_LEFT_P)
 		{
+			FlxTransitionableState.skipNextTransOut = true;
+			FlxTransitionableState.skipNextTransIn = true;
 			MusicBeatState.switchState(new options.OptionsState());
 		}
 
