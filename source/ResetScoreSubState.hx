@@ -1,6 +1,7 @@
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
+import flixel.addons.transition.FlxTransitionableState;
 import flixel.util.FlxColor;
 #if android
 import flixel.FlxCamera;
@@ -103,8 +104,13 @@ class ResetScoreSubState extends MusicBeatSubstate
 		}
 		if (controls.BACK)
 		{
+			#if android
+                        FlxTransitionableState.skipNextTransOut = true;
+			FlxG.resetState();
+                        #else
+                        close();
+                        #end
 			FlxG.sound.play(Paths.sound('cancelMenu'), 1);
-			MusicBeatState.switchState(FlxG.state);
 		}
 		else if (controls.ACCEPT)
 		{
