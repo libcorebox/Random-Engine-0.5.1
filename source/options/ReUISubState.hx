@@ -54,8 +54,13 @@ class ReUISubState extends BaseOptionsMenu
 		var option:Option = new Option('Song Info', 'If unchecked, hides Song info.', 'songInfo', 'bool', true);
 		addOption(option);
 
-		var option:Option = new Option('Play Hit Sounds', 'If checked enables hit sound.', 'playHitSound', 'bool', false);
+		var option:Option = new Option('Hitsound Volume', 'Funny note does \"Tick!\" when you hit it.', 'hitsoundVolume', 'percent', 0);
 		addOption(option);
+		option.scrollSpeed = 1.6;
+		option.minValue = 0.0;
+		option.maxValue = 1;
+		option.changeValue = 0.1;
+		option.decimals = 1;
 
 		var option:Option = new Option('MS Text', 'If unchecked, disables the ms text.', 'msTxt', 'bool', true);
                 addOption(option);
