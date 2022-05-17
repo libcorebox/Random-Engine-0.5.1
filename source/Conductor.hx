@@ -49,7 +49,7 @@ class Conductor
 		return 'shit';
 	}
 
-	public static function mapBPMChanges(song:SwagSong, ?mult:Float = 1))
+	public static function mapBPMChanges(song:SwagSong, ?mult:Float = 1)
 	{
 		bpmChangeMap = [];
 
