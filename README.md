@@ -1,7 +1,7 @@
 ## Credits:
 * Discussions page ( dead :( ) - Icon boping,easy to copy shaders code
 * Kade Engine - Kade options,Rainbow fps code,etc
-* [nebulazorua](https://github.com/nebulazorua) - Original shaders code + extra gameplay modifiers
+* [nebulazorua](https://github.com/nebulazorua) - Original shaders code
 * [lemz1](https://github.com/lemz1) - Rainbow fps code for Psych
 * [BeastlyGhost](https://github.com/BeastlyGhost) - Kade Engine timebar code + ratings code
 * Vs Tabi - Tabi option lol
