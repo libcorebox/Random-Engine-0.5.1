@@ -78,13 +78,11 @@ class Conductor
 
 	public static function changeBPM(newBpm:Float)
 	{
-<<<<<<< HEAD
 		if (newBpm > 0) {
-			bpm = newBpm * mult;
+			bpm = newBpm;
 		}
-=======
+
 		bpm = newBpm;
->>>>>>> parent of 2063e16 (fixes and playback speed)
 
 		crochet = ((60 / bpm) * 1000);
 		stepCrochet = crochet / 4;
