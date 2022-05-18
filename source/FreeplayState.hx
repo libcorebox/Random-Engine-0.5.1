@@ -389,7 +389,26 @@ class FreeplayState extends MusicBeatState
 		if (curDifficulty >= CoolUtil.difficulties.length)
 			curDifficulty = 0;
 
+		var 
+
 		lastDifficultyName = CoolUtil.difficulties[curDifficulty];
+
+		var diffString:String = "Normal";
+		diffString = CoolUtil.difficultyString();
+
+		switch (diffString) //if you want to put colors on your custom difficulties, create a new case with your color of choice
+		{
+			case "Easy":
+				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.LIME, {ease: FlxEase.quadInOut});
+			case "Normal":
+				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.YELLOW, {ease: FlxEase.quadInOut});
+			case "Hard":
+				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.RED, {ease: FlxEase.quadInOut});
+			case "Erect":
+				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.GREEN, {ease: FlxEase.quadInOut});
+			default:
+				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.WHITE, {ease: FlxEase.quadInOut});
+		}
 
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
@@ -397,7 +416,7 @@ class FreeplayState extends MusicBeatState
 		#end
 
 		PlayState.storyDifficulty = curDifficulty;
-		diffText.text = '< ' + CoolUtil.difficultyString() + ' >';
+		diffText.text = '< ' + diffString + ' >';
 		positionHighscore();
 	}
 
