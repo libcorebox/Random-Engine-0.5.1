@@ -50,7 +50,7 @@
 	<define name="MODS_ALLOWED" unless="web"/>
 	<define name="LUA_ALLOWED" unless="web"/>
 	<define name="ACHIEVEMENTS_ALLOWED" />
-	<define name="VIDEOS_ALLOWED" unless="32bits"/>
+	<define name="VIDEOS_ALLOWED"/>
 	<define name="PSYCH_WATERMARKS"/> <!-- DELETE THIS TO REMOVE WATERMARKS ON TITLE SCREEN -->
 
 	<!-- DONT ENABLE THIS -->
@@ -126,7 +126,7 @@
 	<haxelib name="faxe" if='switch'/>
 	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="desktop"/>
-        <haxelib name="extension-webview" if="android"/>
+        <haxelib name="hxCodec" if="VIDEOS_ALLOWED" unless="web"/>
         <haxelib name="extension-androidtools" if="android"/>
 
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->

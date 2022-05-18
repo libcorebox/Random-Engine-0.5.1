@@ -49,7 +49,7 @@ class Conductor
 		return 'shit';
 	}
 
-	public static function mapBPMChanges(song:SwagSong)
+	public static function mapBPMChanges(song:SwagSong, ?mult:Float = 1)
 	{
 		bpmChangeMap = [];
 
@@ -58,9 +58,9 @@ class Conductor
 		var totalPos:Float = 0;
 		for (i in 0...song.notes.length)
 		{
-			if (song.notes[i].changeBPM && song.notes[i].bpm != curBPM)
+			if (song.notes[i].changeBPM && song.notes[i].bpm * mult != curBPM && song.notes[i].bpm > 0)
 			{
-				curBPM = song.notes[i].bpm;
+				curBPM = song.notes[i].bpm * mult;
 				var event:BPMChangeEvent = {
 					stepTime: totalSteps,
 					songTime: totalPos,
@@ -76,9 +76,10 @@ class Conductor
 		trace("new BPM map BUDDY " + bpmChangeMap);
 	}
 
-	public static function changeBPM(newBpm:Float)
+	public static function changeBPM(newBpm:Float, ?mult:Float = 1)
 	{
-		bpm = newBpm;
+		if (newBpm > 0) {
+			bpm = newBpm * mult;
 
 		crochet = ((60 / bpm) * 1000);
 		stepCrochet = crochet / 4;

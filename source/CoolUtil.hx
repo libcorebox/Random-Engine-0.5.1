@@ -40,7 +40,7 @@ class CoolUtil
 
 	public static function difficultyString():String
 	{
-		return difficulties[PlayState.storyDifficulty].toUpperCase();
+		return difficulties[PlayState.storyDifficulty].toString();
 	}
 
 	inline public static function boundTo(value:Float, min:Float, max:Float):Float

@@ -225,6 +225,7 @@ class FreeplayState extends MusicBeatState
 					num++;
 			}
 	}*/
+	var speedPlaying:Int = -1;
 	var instPlaying:Int = -1;
 
 	private static var vocals:FlxSound = null;
@@ -300,7 +301,7 @@ class FreeplayState extends MusicBeatState
 		}
 		else if (space)
 		{
-			if (instPlaying != curSelected)
+			if(instPlaying != curSelected || speedPlaying != ClientPrefs.getGameplaySetting('songspeed', 1))
 			{
 				#if PRELOAD_ALL
 				destroyFreeplayVocals();
@@ -314,12 +315,28 @@ class FreeplayState extends MusicBeatState
 					vocals = new FlxSound();
 
 				FlxG.sound.list.add(vocals);
-				FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.7);
 				vocals.play();
 				vocals.persist = true;
 				vocals.looped = true;
 				vocals.volume = 0.7;
+				FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.7);
 				instPlaying = curSelected;
+
+				Conductor.mapBPMChanges(PlayState.SONG, ClientPrefs.getGameplaySetting('songspeed', 1));
+				Conductor.changeBPM(PlayState.SONG.bpm, ClientPrefs.getGameplaySetting('songspeed', 1));
+
+				speedPlaying = ClientPrefs.getGameplaySetting('songspeed', 1);
+
+				#if cpp
+				@:privateAccess
+				{
+					if (ClientPrefs.getGameplaySetting('songspeed', 1) != 1) {
+						lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__source.__backend.handle, lime.media.openal.AL.PITCH, ClientPrefs.getGameplaySetting('songspeed', 1));
+						if (vocals.playing)
+							lime.media.openal.AL.sourcef(vocals._channel.__source.__backend.handle, lime.media.openal.AL.PITCH, ClientPrefs.getGameplaySetting('songspeed', 1));
+					}
+				}
+				#end
 				#end
 			}
 		}
@@ -389,6 +406,18 @@ class FreeplayState extends MusicBeatState
 			curDifficulty = 0;
 
 		lastDifficultyName = CoolUtil.difficulties[curDifficulty];
+
+		switch (curDifficulty) //if you want to put colors on your custom difficulties, create a new case with your color of choice
+		{
+			case 0:
+				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.LIME, {ease: FlxEase.quadInOut});
+			case 1:
+				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.YELLOW, {ease: FlxEase.quadInOut});
+			case 2:
+				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.RED, {ease: FlxEase.quadInOut});
+			default:
+				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.WHITE, {ease: FlxEase.quadInOut});
+		}
 
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);

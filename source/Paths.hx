@@ -20,8 +20,6 @@ class Paths
 {
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
 
-	inline public static var VIDEO_EXT = #if android "html" #else "mp4" #end; // android can't run mp4
-
 	#if MODS_ALLOWED
 	#if (haxe >= "4.0.0")
 	public static var customImagesLoaded:Map<String, Bool> = new Map();
@@ -136,7 +134,7 @@ class Paths
 			return file;
 		}
 		#end
-		return SUtil.getPath() + 'assets/videos/$key.$VIDEO_EXT';
+		return SUtil.getPath() + 'assets/videos/$key';
 	}
 
 	static public function sound(key:String, ?library:String):Dynamic
@@ -367,7 +365,7 @@ class Paths
 
 	inline static public function modsVideo(key:String)
 	{
-		return modFolders('videos/' + key + '.' + VIDEO_EXT);
+		return modFolders('videos/' + key);
 	}
 
 	inline static public function modsMusic(key:String)

@@ -276,11 +276,8 @@ class MainMenuState extends MusicBeatState
 //				selectedSomethin = true;
 //				MusicBeatState.switchState(new MasterEditorMenu());
 				#if android
-			        if(ClientPrefs.vibration)
-		                {
 					Hardware.vibrate(300);
-		                }
-	        	        #end
+	      #end
 				
 			}
 		}

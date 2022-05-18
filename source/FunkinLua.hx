@@ -1436,24 +1436,17 @@ class FunkinLua
 				}
 			}
 		});
-		Lua_helper.add_callback(lua, "startVideo", function(videoFile:String)
-		{
+		Lua_helper.add_callback(lua, "startVideo", function(videoFile:String) {
 			#if VIDEOS_ALLOWED
-			if (FileSystem.exists(Paths.video(videoFile)))
-			{
+			if(FileSystem.exists(Paths.modsVideo(videoFile))) {
 				PlayState.instance.startVideo(videoFile);
-			}
-			else
-			{
+			} else {
 				luaTrace('Video file not found: ' + videoFile);
 			}
 			#else
-			if (PlayState.instance.endingSong)
-			{
+			if(PlayState.instance.endingSong) {
 				PlayState.instance.endSong();
-			}
-			else
-			{
+			} else {
 				PlayState.instance.startCountdown();
 			}
 			#end
