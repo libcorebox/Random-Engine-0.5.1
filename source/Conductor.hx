@@ -49,7 +49,7 @@ class Conductor
 		return 'shit';
 	}
 
-	public static function mapBPMChanges(song:SwagSong, ?mult:Float = 1)
+	public static function mapBPMChanges(song:SwagSong)
 	{
 		bpmChangeMap = [];
 
@@ -58,9 +58,9 @@ class Conductor
 		var totalPos:Float = 0;
 		for (i in 0...song.notes.length)
 		{
-			if (song.notes[i].changeBPM && song.notes[i].bpm * mult != curBPM && song.notes[i].bpm > 0)
+			if (song.notes[i].changeBPM && song.notes[i].bpm != curBPM)
 			{
-				curBPM = song.notes[i].bpm * mult;
+				curBPM = song.notes[i].bpm;
 				var event:BPMChangeEvent = {
 					stepTime: totalSteps,
 					songTime: totalPos,
@@ -76,11 +76,15 @@ class Conductor
 		trace("new BPM map BUDDY " + bpmChangeMap);
 	}
 
-	public static function changeBPM(newBpm:Float, ?mult:Float = 1)
+	public static function changeBPM(newBpm:Float)
 	{
+<<<<<<< HEAD
 		if (newBpm > 0) {
 			bpm = newBpm * mult;
 		}
+=======
+		bpm = newBpm;
+>>>>>>> parent of 2063e16 (fixes and playback speed)
 
 		crochet = ((60 / bpm) * 1000);
 		stepCrochet = crochet / 4;
