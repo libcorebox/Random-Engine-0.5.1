@@ -1991,7 +1991,7 @@ class PlayState extends MusicBeatState
 		previousFrameTime = FlxG.game.ticks;
 		lastReportedPlayheadPosition = 0;
 
-		FlxG.sound.music.play()
+		FlxG.sound.music.play();
 		//FlxG.sound.music.onComplete = finishSong;
 		vocals.play();
 
