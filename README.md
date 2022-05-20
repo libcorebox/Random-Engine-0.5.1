@@ -3,7 +3,7 @@
 * Kade Engine - Kade options,Rainbow fps code,etc
 * [nebulazorua](https://github.com/nebulazorua) - Original shaders code
 * [lemz1](https://github.com/lemz1) - Rainbow fps code for Psych
-* [BeastlyGhost](https://github.com/BeastlyGhost) - Kade Engine timebar code + ratings code
+* [BeastlyGhost](https://github.com/BeastlyGhost) - Kade Engine timebar code 
 * Vs Tabi - Tabi option lol
 * Jigsaw - Porting psych engine
 * Randomxd(me) - Putting it all together,and also some stuffs and some fixes 
