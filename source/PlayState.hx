@@ -1599,7 +1599,7 @@ class PlayState extends MusicBeatState
 			foundFile = true;
 		}
 		#end
-
+		
 		if(!foundFile) {
 			fileName = Paths.video(name);
 			#if sys
@@ -1609,6 +1609,27 @@ class PlayState extends MusicBeatState
 			#end
 				foundFile = true;
 			}
+		}
+
+		if (!foundFile) {
+			fileName = #if MODS_ALLOWED Paths.modFolders('videos/' + name + ".mp4"); #else ''; #end;
+
+			#if sys
+	                if(FileSystem.exists(fileName)) {
+	                        foundFile = true;
+	                }
+	                #end
+
+	                if(!foundFile) {
+	                        fileName = Paths.video(name);
+	                        #if sys
+	                        if(FileSystem.exists(fileName)) {
+        	                #else
+	                        if(OpenFlAssets.exists(fileName)) {
+	                        #end
+	                                foundFile = true;
+	                        }
+	                }
 		}
 
 		if(foundFile) {
