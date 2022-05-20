@@ -1612,7 +1612,7 @@ class PlayState extends MusicBeatState
 		}
 
 		if (!foundFile) {
-			fileName = #if MODS_ALLOWED Paths.modFolders('videos/' + name + ".mp4"); #else ''; #end;
+			fileName = #if MODS_ALLOWED Paths.modFolders('videos/' + name + ".mp4"); #else ''; #end
 
 			#if sys
 	                if(FileSystem.exists(fileName)) {
