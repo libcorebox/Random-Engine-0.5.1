@@ -393,10 +393,7 @@ class FreeplayState extends MusicBeatState
 
 		lastDifficultyName = CoolUtil.difficulties[curDifficulty];
 
-		var diffString:String = "Normal";
-		diffString = CoolUtil.difficultyString();
-
-		switch (diffString) //if you want to put colors on your custom difficulties, create a new case with your color of choice
+		switch (CoolUtil.difficultyString()) //if you want to put colors on your custom difficulties, create a new case with your color of choice
 		{
 			case "Easy":
 				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.LIME, {ease: FlxEase.quadInOut});
@@ -416,7 +413,7 @@ class FreeplayState extends MusicBeatState
 		#end
 
 		PlayState.storyDifficulty = curDifficulty;
-		diffText.text = '< ' + diffString + ' >';
+		diffText.text = '< ' + CoolUtil.difficultyString() + ' >';
 		positionHighscore();
 	}
 
