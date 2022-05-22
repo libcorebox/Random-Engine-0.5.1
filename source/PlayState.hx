@@ -1621,7 +1621,7 @@ class PlayState extends MusicBeatState
 	                #end
 
 	                if(!foundFile) {
-	                        fileName = Paths.video(name);
+	                        fileName = Paths.video(name) + ".mp4";
 	                        #if sys
 	                        if(FileSystem.exists(fileName)) {
         	                #else
