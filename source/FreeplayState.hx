@@ -56,7 +56,7 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
-		#if MODS_ALLOWED
+			#if MODS_ALLOWED
 		Paths.destroyLoadedImages();
 		#end
 
@@ -393,16 +393,14 @@ class FreeplayState extends MusicBeatState
 
 		lastDifficultyName = CoolUtil.difficulties[curDifficulty];
 
-		switch (CoolUtil.difficultyString()) //if you want to put colors on your custom difficulties, create a new case with your color of choice
+		switch (curDifficulty) //if you want to put colors on your custom difficulties, create a new case with your color of choice
 		{
-			case "Easy":
+			case 0:
 				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.LIME, {ease: FlxEase.quadInOut});
-			case "Normal":
+			case 1:
 				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.YELLOW, {ease: FlxEase.quadInOut});
-			case "Hard":
+			case 3:
 				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.RED, {ease: FlxEase.quadInOut});
-			case "Erect":
-				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.GREEN, {ease: FlxEase.quadInOut});
 			default:
 				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.WHITE, {ease: FlxEase.quadInOut});
 		}
