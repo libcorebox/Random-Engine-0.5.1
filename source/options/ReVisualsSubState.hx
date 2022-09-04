@@ -40,9 +40,6 @@ class ReVisualsSubState extends BaseOptionsMenu
 		var option:Option = new Option('Tiny Fps Text', 'If checked, makes the fps text tiny, needs a restart.', 'tinyFpsTxt', 'bool', false);
 		addOption(option);
 
-		var option:Option = new Option('Rainbow FPS', 'If checked, makes the FPS have a chroma effect.', 'fpsRainbow', 'bool', false);
-		addOption(option);
-
 		var option:Option = new Option('Ms Text Colors', 'If unchecked, disables coloring in the Ms text.', 'coloredMs', 'bool', true);
 		addOption(option);
 
