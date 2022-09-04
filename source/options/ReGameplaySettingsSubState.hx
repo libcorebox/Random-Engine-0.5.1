@@ -40,9 +40,6 @@ class ReGameplaySettingsSubState extends BaseOptionsMenu
 		var option:Option = new Option('Sustain Hp', 'If unchecked, disables hp gained from sustains.', 'sustainhp', 'bool', true);
 		addOption(option);
 
-		//		var option:Option = new Option('Moving HP bar', 'if checked makes the bar move with the extra hp.', 'tabi', 'bool', false);
-		//		addOption(option);
-
 		var option:Option = new Option('HP', "How much hp you want", 'maxHp', 'int', 2);
 		addOption(option);
 		option.minValue = 2;

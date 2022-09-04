@@ -44,8 +44,7 @@ class ClientPrefs
 	];
 
 	// My Engine Stuff
-	// Tabi stuff lol
-	public static var tabi:Bool = false;
+	// lol
 	public static var maxHp:Int = 2;
 	// Ui stuff
 	public static var scoreType:String = 'Kade Engine';
@@ -147,8 +146,7 @@ class ClientPrefs
 		FlxG.save.data.pauseMusic = pauseMusic;
 		FlxG.save.data.vibration = vibration;
 		// My Engine stuff
-		// Tabi stuff
-		FlxG.save.data.tabi = tabi;
+		// lol
 		FlxG.save.data.maxHp = maxHp;
 		// Misc stuff
 		FlxG.save.data.memoryCounter = memoryCounter;
@@ -310,11 +308,7 @@ class ClientPrefs
 			pauseMusic = FlxG.save.data.pauseMusic;
 		}
 		// My Engine stuff
-		// Tabi stuff
-		if (FlxG.save.data.tabi != null)
-		{
-			tabi = FlxG.save.data.tabi;
-		}
+		// lol
 		if (FlxG.save.data.maxHp != null)
 		{
 			maxHp = FlxG.save.data.maxHp;
