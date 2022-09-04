@@ -476,11 +476,12 @@ class ModsMenuState extends MusicBeatState
 			}
 		}
 
-		if (controls.UI_UP_P)
+		// https://github.com/ShadowMario/FNF-PsychEngine/pull/9587
+		if (controls.UI_UP_P && noModsTxt.visible)
 		{
 			changeSelection(-1);
 		}
-		if (controls.UI_DOWN_P)
+		if (controls.UI_DOWN_P && noModsTxt.visible)
 		{
 			changeSelection(1);
 		}

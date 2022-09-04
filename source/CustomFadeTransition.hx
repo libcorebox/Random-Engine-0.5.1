@@ -105,6 +105,10 @@ class CustomFadeTransition extends MusicBeatSubstate
 	{
 		if (leTween != null)
 		{
+			#if MODS_ALLOWED
+			if (isTransIn)
+				Paths.destroyLoadedImages();
+			#end
 			finishCallback();
 			leTween.cancel();
 		}
