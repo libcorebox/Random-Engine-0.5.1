@@ -42,9 +42,6 @@ class ReUISubState extends BaseOptionsMenu
 		var option:Option = new Option('Memory Counter', 'If unchecked, disables the memory counter.', 'memoryCounter', 'bool', false);
 		addOption(option);
 
-		var option:Option = new Option('Memory Counter Peak', 'If checked, adds the peak to the memory counter.', 'memoryCounterPeak', 'bool', false);
-                addOption(option);
-
 		var option:Option = new Option('Health Counter', 'If checked, enables the health counter.', 'healthCounter', 'bool', false);
 		addOption(option);
 
@@ -63,16 +60,16 @@ class ReUISubState extends BaseOptionsMenu
 		option.decimals = 1;
 
 		var option:Option = new Option('MS Text', 'If unchecked, disables the ms text.', 'msTxt', 'bool', true);
-                addOption(option);
+		addOption(option);
 
 		var option:Option = new Option('Ke Title Screen', 'If checked uses the ke title screen', 'keTitleScreen', 'bool', false);
-                addOption(option);
+		addOption(option);
 
 		var option:Option = new Option('Normal Combo Count', 'If checked adds extra 0es to the combo counter.', 'normalCombo', 'bool', false);
 		addOption(option);
 
-		var option:Option = new Option('Detached Ratings', 'If checked, detaches the ratings from the camera.(independent from detached HUD)', 'detachedRatings',
-			'bool', false);
+		var option:Option = new Option('Detached Ratings', 'If checked, detaches the ratings from the camera.(independent from detached HUD)',
+			'detachedRatings', 'bool', false);
 		addOption(option);
 
 		var option:Option = new Option('Detached HUD', 'If checked, detaches the HUD (except the controls) from the camera.', 'detachedHUD', 'bool', false);
@@ -110,7 +107,8 @@ class ReUISubState extends BaseOptionsMenu
 		option.decimals = 1;
 		addOption(option);
 
-		var option:Option = new Option('Pause Screen Song:', "What song do you prefer for the Pause Screen?", 'pauseMusic', 'string', 'Tea Time', ['None', 'Breakfast', 'Tea Time']);
+		var option:Option = new Option('Pause Screen Song:', "What song do you prefer for the Pause Screen?", 'pauseMusic', 'string', 'Tea Time',
+			['None', 'Breakfast', 'Tea Time']);
 		addOption(option);
 		option.onChange = onChangePauseMusic;
 
@@ -118,9 +116,10 @@ class ReUISubState extends BaseOptionsMenu
 	}
 
 	var changedMusic:Bool = false;
+
 	function onChangePauseMusic()
 	{
-		if(ClientPrefs.pauseMusic == 'None')
+		if (ClientPrefs.pauseMusic == 'None')
 			FlxG.sound.music.volume = 0;
 		else
 			FlxG.sound.playMusic(Paths.music(Paths.formatToSongPath(ClientPrefs.pauseMusic)));

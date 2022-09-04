@@ -223,11 +223,11 @@ class NotesSubState extends MusicBeatSubstate
 			{
 				ClientPrefs.saveSettings();
 				#if android
-	                        FlxTransitionableState.skipNextTransOut = true;
-	                        FlxG.resetState();
-	                        #else
-		                close();
-	                        #end
+				FlxTransitionableState.skipNextTransOut = true;
+				FlxG.resetState();
+				#else
+				close();
+				#end
 			}
 			else
 			{

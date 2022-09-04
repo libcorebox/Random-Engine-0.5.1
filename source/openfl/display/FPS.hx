@@ -12,7 +12,6 @@ import openfl.display._internal.stats.DrawCallContext;
 #if flash
 import openfl.Lib;
 #end
-
 #if openfl
 import openfl.system.System;
 #end
@@ -35,9 +34,7 @@ class FPS extends TextField
 	@:noCompletion private var cacheCount:Int;
 	@:noCompletion private var currentTime:Float;
 	@:noCompletion private var times:Array<Float>;
-	private var memPeak:Float = 0;
 
-	
 	public var size:Bool = ClientPrefs.tinyFpsTxt;
 
 	public function new(x:Float = 10, y:Float = 10, color:Int = 0x000000)
@@ -51,10 +48,10 @@ class FPS extends TextField
 		selectable = false;
 		mouseEnabled = false;
 
-		if (!ClientPrefs.tinyFpsTxt)
-		defaultTextFormat = new TextFormat("_sans", 14, color);
+		if (!size)
+			defaultTextFormat = new TextFormat("_sans", 14, color);
 		else
-		defaultTextFormat = new TextFormat("_sans", 12, color);
+			defaultTextFormat = new TextFormat("_sans", 12, color);
 
 		autoSize = LEFT;
 		multiline = true;
@@ -87,22 +84,21 @@ class FPS extends TextField
 
 		var currentCount = times.length;
 		currentFPS = Math.round((currentCount + cacheCount) / 2);
-		if (currentFPS > ClientPrefs.framerate) currentFPS = ClientPrefs.framerate;
+		if (currentFPS > ClientPrefs.framerate)
+			currentFPS = ClientPrefs.framerate;
 
 		if (currentCount != cacheCount /*&& visible*/)
 		{
 			text = "FPS: " + currentFPS;
 			var memoryMegas:Float = 0;
-
 			var memPeak:Float = 0;
 
 			if (ClientPrefs.memoryCounter)
 			{
 				memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
-				if (memoryMegas > memPeak) memPeak = memoryMegas;
-				text += "\nMemory: " + memoryMegas + " MB";
-				if (ClientPrefs.memPeak)
-				text += "\nPeak: " + memPeak + " MB";			
+				if (memoryMegas > memPeak)
+					memPeak = memoryMegas;
+				text += "\nMemory: " + memoryMegas + " MB /" + memPeak + "MB";
 			}
 
 			textColor = 0xFFFFFFFF;

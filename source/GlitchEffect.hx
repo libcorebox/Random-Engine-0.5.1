@@ -21,52 +21,56 @@ import flixel.system.FlxAssets.FlxShader;
 
 class GlitchEffect
 {
-    public var shader(default, null):GlitchShader = new GlitchShader();
-    //public var intensity(default, set):Int = 10;
+	public var shader(default, null):GlitchShader = new GlitchShader();
 
-    // increass if u want more gitches squares, or decrease (min is 3)
-    public var NUM_SAMPLES(default, set):Int = 10;
-    // strength of effect
-    public var glitchMultiply(default, set):Float = 1;
-    // offset of the effect, updated along with iTime.
-    public var iMouse(default, set):Float = 779;
+	// public var intensity(default, set):Int = 10;
+	// increass if u want more gitches squares, or decrease (min is 3)
+	public var NUM_SAMPLES(default, set):Int = 10;
+	// strength of effect
+	public var glitchMultiply(default, set):Float = 1;
+	// offset of the effect, updated along with iTime.
+	public var iMouse(default, set):Float = 779;
 
-    public function new():Void
+	public function new():Void
 	{
-        shader.iMouseX.value = [779];
+		shader.iMouseX.value = [779];
 		shader.uTime.value = [0];
-        shader.NUM_SAMPLES.value = [10];
-        shader.glitchMultiply.value = [1];
+		shader.NUM_SAMPLES.value = [10];
+		shader.glitchMultiply.value = [1];
 	}
 
-    // update this manually
+	// update this manually
 	public function update(elapsed:Float):Void
 	{
-        //shader.iMouseX.value[0] = FlxG.mouse.x;
-        shader.iMouseX.value[0] = iMouse; //much better if self adjusted.
+		// shader.iMouseX.value[0] = FlxG.mouse.x;
+		shader.iMouseX.value[0] = iMouse; // much better if self adjusted.
 		shader.uTime.value[0] += elapsed;
 	}
 
-	function set_NUM_SAMPLES(value:Int):Int {
+	function set_NUM_SAMPLES(value:Int):Int
+	{
 		NUM_SAMPLES = value;
-        shader.NUM_SAMPLES.value[0] = value;
-        return value;
+		shader.NUM_SAMPLES.value[0] = value;
+		return value;
 	}
 
-	function set_glitchMultiply(value:Float):Float {
+	function set_glitchMultiply(value:Float):Float
+	{
 		glitchMultiply = value;
-        shader.glitchMultiply.value[0] = value;
-        return value;
+		shader.glitchMultiply.value[0] = value;
+		return value;
 	}
 
-    function set_iMouse(value:Float):Float {
+	function set_iMouse(value:Float):Float
+	{
 		iMouse = value;
-        return value;
+		return value;
 	}
 }
 
-class GlitchShader extends FlxShader {
-    @:glFragmentSource('
+class GlitchShader extends FlxShader
+{
+	@:glFragmentSource('
     #pragma header
 
     uniform float uTime;
@@ -182,8 +186,8 @@ class GlitchShader extends FlxShader {
         gl_FragColor.a = sum.a;
         gl_FragColor.rgb = sum.rgb; // * outcol0.a;
     }')
-
-    public function new() {
-        super();
-    }
+	public function new()
+	{
+		super();
+	}
 }

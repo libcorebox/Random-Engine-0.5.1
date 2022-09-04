@@ -78,7 +78,8 @@ class Conductor
 
 	public static function changeBPM(newBpm:Float)
 	{
-		if (newBpm > 0) {
+		if (newBpm > 0)
+		{
 			bpm = newBpm;
 		}
 

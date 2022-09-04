@@ -131,11 +131,11 @@ class ControlsSubState extends MusicBeatSubstate
 			{
 				ClientPrefs.reloadControls();
 				#if android
-	                        FlxTransitionableState.skipNextTransOut = true;
-	                        FlxG.resetState();
-                	        #else
-		                close();
-	                        #end
+				FlxTransitionableState.skipNextTransOut = true;
+				FlxG.resetState();
+				#else
+				close();
+				#end
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 			}
 

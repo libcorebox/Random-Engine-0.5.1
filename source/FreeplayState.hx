@@ -56,9 +56,9 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
-			#if MODS_ALLOWED
-		Paths.destroyLoadedImages();
-		#end
+		//	#if MODS_ALLOWED
+		// Paths.destroyLoadedImages();
+		// #end
 
 		PlayState.isStoryMode = false;
 		WeekData.reloadWeekFiles(false);
@@ -389,11 +389,9 @@ class FreeplayState extends MusicBeatState
 		if (curDifficulty >= CoolUtil.difficulties.length)
 			curDifficulty = 0;
 
-		var 
+		var lastDifficultyName = CoolUtil.difficulties[curDifficulty];
 
-		lastDifficultyName = CoolUtil.difficulties[curDifficulty];
-
-		switch (curDifficulty) //if you want to put colors on your custom difficulties, create a new case with your color of choice
+		switch (curDifficulty) // if you want to put colors on your custom difficulties, create a new case with your color of choice
 		{
 			case 0:
 				FlxTween.color(diffText, 0.3, diffText.color, FlxColor.LIME, {ease: FlxEase.quadInOut});

@@ -38,21 +38,31 @@ class ReVisualsSubState extends BaseOptionsMenu
 		addOption(option);
 
 		var option:Option = new Option('Tiny Fps Text', 'If checked, makes the fps text tiny, needs a restart.', 'tinyFpsTxt', 'bool', false);
-                addOption(option);
+		addOption(option);
 
 		var option:Option = new Option('Rainbow FPS', 'If checked, makes the FPS have a chroma effect.', 'fpsRainbow', 'bool', false);
-		addOption(option);
+		addOption(option)
+		option.onChange = onChangeFpsRainbow;
 
 		var option:Option = new Option('Ms Text Colors', 'If unchecked, disables coloring in the Ms text.', 'coloredMs', 'bool', true);
-                addOption(option);
-
-		var option:Option = new Option('KE Timebar', 'If checked, uses the KE timebar.', 'keTimeBar', 'bool', false);
 		addOption(option);
 
-		var option:Option = new Option('Timebar Color', 'The color of your Timebar.', 'timeBarColor', 'string', 'White', 
-		['White', 'Blue', 'Cyan', 'Green', 'Red']);
-                addOption(option);
+		var option:Option = new Option('Health Smoothing', 'If checked, Makes the health smoother.', 'smoothHealth', 'bool', false);
+		addOption(option);
+
+		var option:Option = new Option('Timebar Style', 'What timebarStyle do you like?', 'timeBarStyle', 'String', 'Psych Engine',
+			['Psych Engine', 'Kade Engine']);
+		addOption(option);
+
+		var option:Option = new Option('Timebar Color', 'The color of your Timebar.', 'timeBarColor', 'string', 'White',
+			['White', 'Blue', 'Cyan', 'Green', 'Red']);
+		addOption(option);
 
 		super();
+	}
+
+	function onChangeFpsRainbow()
+	{
+		Main.fpsRainbow = ClientPrefs.fpsRainbow;
 	}
 }

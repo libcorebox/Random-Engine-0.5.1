@@ -6,38 +6,42 @@ import flixel.system.FlxAssets.FlxShader;
 
 class VhsHandler
 {
-    public var shader:VhsShader;
-    public var noise(default, set):Float = 0.0;
-    public var intensity(default,set):Float = 0.2;
+	public var shader:VhsShader;
+	public var noise(default, set):Float = 0.0;
+	public var intensity(default, set):Float = 0.2;
 
 	public function new()
 	{
-		//super();
-        shader = new VhsShader();
-    	shader.iTime.value = [0.0];
-	    shader.noisePercent.value = [0.0];
-        shader.intensity.value = [0.2];
+		// super();
+		shader = new VhsShader();
+		shader.iTime.value = [0.0];
+		shader.noisePercent.value = [0.0];
+		shader.intensity.value = [0.2];
 	}
 
 	public function update(elapsed:Float)
 	{
-    	shader.iTime.value[0] += elapsed;
+		shader.iTime.value[0] += elapsed;
 	}
 
-	function set_noise(value:Float):Float {
-	    shader.noisePercent.value = [value];
-        noise = value;
-        return value;
+	function set_noise(value:Float):Float
+	{
+		shader.noisePercent.value = [value];
+		noise = value;
+		return value;
 	}
-	function set_intensity(value:Float):Float {
-    	shader.intensity.value = [value];
-        intensity = value;
-        return value;
+
+	function set_intensity(value:Float):Float
+	{
+		shader.intensity.value = [value];
+		intensity = value;
+		return value;
 	}
 }
 
-class VhsShader extends FlxShader {
-    @:glFragmentSource('
+class VhsShader extends FlxShader
+{
+	@:glFragmentSource('
     #pragma header
     
     uniform float iTime;
@@ -115,7 +119,8 @@ class VhsShader extends FlxShader {
         gl_FragColor = vec4(video.rgb,daAlp);
     }
     ')
-    public function new() {
-        super();
-    }
+	public function new()
+	{
+		super();
+	}
 }

@@ -43,7 +43,6 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 
 	function getOptions()
 	{
-
 		var goption:GameplayOption = new GameplayOption('Scroll Type', 'scrolltype', 'string', 'multiplicative', ["multiplicative", "constant"]);
 		optionsArray.push(goption);
 
@@ -94,7 +93,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 
 	public function getOptionByName(name:String)
 	{
-		for(i in optionsArray)
+		for (i in optionsArray)
 		{
 			var opt:GameplayOption = i;
 			if (opt.name == name)
@@ -182,11 +181,11 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		if (controls.BACK)
 		{
 			#if android
-                        FlxTransitionableState.skipNextTransOut = true;
+			FlxTransitionableState.skipNextTransOut = true;
 			FlxG.resetState();
-                        #else
-                        close();
-                        #end
+			#else
+			close();
+			#end
 			ClientPrefs.saveSettings();
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
@@ -264,20 +263,21 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 									curOption.setValue(curOption.options[num]); // lol
 
 									if (curOption.name == "Scroll Type")
+									{
+										var oOption:GameplayOption = getOptionByName("Scroll Speed");
+										if (oOption != null)
+										{
+											if (curOption.getValue() == "constant")
 											{
-											var oOption:GameplayOption = getOptionByName("Scroll Speed");
-											if (oOption != null)
+												oOption.displayFormat = "%v";
+												oOption.maxValue = 6;
+											}
+											else
 											{
-												if (curOption.getValue() == "constant")
-												{
-													oOption.displayFormat = "%v";
-													oOption.maxValue = 6;
-												}
-												else
-												{
-													oOption.displayFormat = "%vX";
-													oOption.maxValue = 3;
-													if(oOption.getValue() > 3) oOption.setValue(3);
+												oOption.displayFormat = "%vX";
+												oOption.maxValue = 3;
+												if (oOption.getValue() > 3)
+													oOption.setValue(3);
 											}
 											updateTextFrom(oOption);
 										}

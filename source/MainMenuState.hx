@@ -38,13 +38,15 @@ class MainMenuState extends MusicBeatState
 	var optionShit:Array<String> = [
 		'story_mode',
 		'freeplay',
-		#if MODS_ALLOWED 'mods',
+		#if MODS_ALLOWED
+		'mods',
 		#end
 		#if ACHIEVEMENTS_ALLOWED
 		'awards',
 		#end
 		'credits',
-		#if !switch 'donate',
+		#if !switch
+		'donate',
 		#end
 		'options'
 	];
@@ -134,20 +136,20 @@ class MainMenuState extends MusicBeatState
 		FlxG.camera.follow(camFollowPos, null, 1);
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Random Engine v0.4.3-BETA", 12);
-                versionShit.scrollFactor.set();
-                versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-                add(versionShit);
+		versionShit.scrollFactor.set();
+		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(versionShit);
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
-/*		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
-*/
+		/*var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
+			versionShit.scrollFactor.set();
+			versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			add(versionShit);
+		 */
 		// NG.core.calls.event.logEvent('swag').send();
 
 		changeItem();
@@ -273,12 +275,11 @@ class MainMenuState extends MusicBeatState
 			}
 			else if (FlxG.keys.anyJustPressed(debugKeys) #if android || _virtualpad.buttonE.justPressed #end)
 			{
-//				selectedSomethin = true;
-//				MusicBeatState.switchState(new MasterEditorMenu());
+				//				selectedSomethin = true;
+				//				MusicBeatState.switchState(new MasterEditorMenu());
 				#if android
-					Hardware.vibrate(300);
-	      #end
-				
+				Hardware.vibrate(300);
+				#end
 			}
 		}
 

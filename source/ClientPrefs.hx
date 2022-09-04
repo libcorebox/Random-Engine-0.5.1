@@ -63,7 +63,9 @@ class ClientPrefs
 	public static var keTitleScreen:Bool = false;
 	public static var fpsRainbow:Bool = false;
 	public static var msTxt:Bool = true;
+	public static var smoothHealth:Bool = false;
 	public static var timeBarColor:String = 'White';
+	public static var timeBarStyle:String = 'Psych Engine';
 	// Arrow opacity stuff
 	public static var arrowOpacity:Float = 1;
 	public static var opponentArrowOpacity:Float = 1;
@@ -166,6 +168,7 @@ class ClientPrefs
 		FlxG.save.data.normalCombo = normalCombo;
 		FlxG.save.data.coloredMs = coloredMs;
 		FlxG.save.data.msTxt = msTxt;
+		FlxG.save.data.smoothHealth = smoothHealth;
 		FlxG.save.data.timeBarColor = timeBarColor;
 		FlxG.save.data.tinyFpsTxt = tinyFpsTxt;
 		FlxG.save.data.memPeak = memPeak;
@@ -257,7 +260,7 @@ class ClientPrefs
 		{
 			hideHud = FlxG.save.data.hideHud;
 		}
-		if(FlxG.save.data.vibration != null) 
+		if (FlxG.save.data.vibration != null)
 		{
 			vibration = FlxG.save.data.vibration;
 		}
@@ -330,28 +333,33 @@ class ClientPrefs
 			songInfo = FlxG.save.data.songInfo;
 		}
 		if (FlxG.save.data.coloredMs != null)
-                {
-                        coloredMs = FlxG.save.data.coloredMs;
-                }
+		{
+			coloredMs = FlxG.save.data.coloredMs;
+		}
 		if (FlxG.save.data.scoreType != null)
 		{
 			scoreType = FlxG.save.data.scoreType;
 		}
 		if (FlxG.save.data.timeBarColor != null)
-                {
-                        timeBarColor = FlxG.save.data.timeBarColor;
-                }
-		if (FlxG.save.data.msTxt != null) {
+		{
+			timeBarColor = FlxG.save.data.timeBarColor;
+		}
+		if (FlxG.save.data.msTxt != null)
+		{
 			msTxt = FlxG.save.data.msTxt;
 		}
+		if (FlxG.save.data.smoothHealth != null)
+		{
+			smoothHealth = FlxG.save.data.smoothHealth;
+		}
 		if (FlxG.save.data.tinyFpsTxt != null)
-                {
-                        tinyFpsTxt = FlxG.save.data.tinyFpsTxt;
-                }
+		{
+			tinyFpsTxt = FlxG.save.data.tinyFpsTxt;
+		}
 		if (FlxG.save.data.memPeak != null)
-                {
-                        memPeak = FlxG.save.data.memPeak;
-                }
+		{
+			memPeak = FlxG.save.data.memPeak;
+		}
 		if (FlxG.save.data.scoreStyle != null)
 		{
 			scoreStyle = FlxG.save.data.scoreStyle;
@@ -369,9 +377,9 @@ class ClientPrefs
 			detachedHUD = FlxG.save.data.detachedHUD;
 		}
 		if (FlxG.save.data.keTitleScreen != null)
-                {
-                        keTitleScreen = FlxG.save.data.keTitleScreen;
-                }
+		{
+			keTitleScreen = FlxG.save.data.keTitleScreen;
+		}
 		// Arrow Opacity
 		if (FlxG.save.data.arrowOpacity != null)
 		{

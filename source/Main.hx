@@ -16,6 +16,7 @@ import lime.app.Application;
 import lime.system.System;
 import android.*;
 #end
+
 class Main extends Sprite
 {
 	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
@@ -36,7 +37,7 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		SUtil.gameCrashCheck();
+		SUtil.uncaughtErrorHandler();
 
 		if (stage != null)
 		{
@@ -57,9 +58,12 @@ class Main extends Sprite
 
 		setupGame();
 		var timer = new haxe.Timer(1);
-		timer.run = function() {
-		coloring();
-		if (fpsVar.textColor == 0) fpsVar.textColor = -4775566;} // needs to be done because textcolor becomes black for a frame
+		timer.run = function()
+		{
+			coloring();
+			if (fpsVar.textColor == 0)
+				fpsVar.textColor = -4775566;
+		} // needs to be done because textcolor becomes black for a frame
 	}
 
 	private function setupGame():Void
@@ -81,7 +85,7 @@ class Main extends Sprite
 		#end
 
 		ClientPrefs.loadDefaultKeys();
-		SUtil.doTheCheck();
+		SUtil.check();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
@@ -112,28 +116,32 @@ class Main extends Sprite
 		FlxColor.fromRGB(82, 40, 204),
 		FlxColor.fromRGB(150, 33, 146)
 	];
+
 	public var skippedFrames = 0;
 	public var currentColor = 0;
 
 	// Event Handlers
 	public function coloring():Void
 	{
-		// Hippity, Hoppity, your code is now my property (from KadeEngine)
-		if (FlxG.save.data.fpsRainbow) {
-		if (currentColor >= array.length)
-			currentColor = 0;
-		currentColor = Math.round(FlxMath.lerp(0, array.length, skippedFrames / ClientPrefs.framerate));
-		(cast(Lib.current.getChildAt(0), Main)).changeFPSColor(array[currentColor]);
-		currentColor++;
-		skippedFrames++;
-		if (skippedFrames > ClientPrefs.framerate)
-			skippedFrames = 0;
+		var fpsRainbow:Bool = ClientPrefs.fpsRainbow;
+		// Hippity, Hoppity, your code is now my property (from KadeEngine and a fork)
+		if (fpsRainbow)
+		{
+			if (currentColor >= array.length)
+				currentColor = 0;
+			currentColor = Math.round(FlxMath.lerp(0, array.length, skippedFrames / ClientPrefs.framerate));
+			(cast(Lib.current.getChildAt(0), Main)).changeFPSColor(array[currentColor]);
+			currentColor++;
+			skippedFrames++;
+			if (skippedFrames > ClientPrefs.framerate)
+				skippedFrames = 0;
 		}
-		else fpsVar.textColor = FlxColor.fromRGB(255, 255, 255);
+		else
+			fpsVar.textColor = FlxColor.fromRGB(255, 255, 255);
 	}
+
 	public function changeFPSColor(color:FlxColor)
 	{
 		fpsVar.textColor = color;
 	}
-
 }

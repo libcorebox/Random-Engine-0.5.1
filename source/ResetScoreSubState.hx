@@ -105,11 +105,11 @@ class ResetScoreSubState extends MusicBeatSubstate
 		if (controls.BACK)
 		{
 			#if android
-                        FlxTransitionableState.skipNextTransOut = true;
+			FlxTransitionableState.skipNextTransOut = true;
 			FlxG.resetState();
-                        #else
-                        close();
-                        #end
+			#else
+			close();
+			#end
 			FlxG.sound.play(Paths.sound('cancelMenu'), 1);
 		}
 		else if (controls.ACCEPT)
