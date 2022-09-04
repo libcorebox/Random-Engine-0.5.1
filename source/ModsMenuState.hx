@@ -69,8 +69,8 @@ class ModsMenuState extends MusicBeatState
 
 	override function create()
 	{
-		Paths.clearStoredMemory();
-		Paths.clearUnusedMemory();
+		Paths.destroyLoadedImages();
+		Paths.destroyLoadedImages();
 
 		WeekData.setDirectoryFromWeek();
 
