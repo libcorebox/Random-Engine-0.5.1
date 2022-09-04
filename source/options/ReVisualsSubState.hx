@@ -42,7 +42,6 @@ class ReVisualsSubState extends BaseOptionsMenu
 
 		var option:Option = new Option('Rainbow FPS', 'If checked, makes the FPS have a chroma effect.', 'fpsRainbow', 'bool', false);
 		addOption(option);
-		option.onChange = onChangeFpsRainbow;
 
 		var option:Option = new Option('Ms Text Colors', 'If unchecked, disables coloring in the Ms text.', 'coloredMs', 'bool', true);
 		addOption(option);
@@ -59,10 +58,5 @@ class ReVisualsSubState extends BaseOptionsMenu
 		addOption(option);
 
 		super();
-	}
-
-	function onChangeFpsRainbow()
-	{
-		Main.fpsRainbow = ClientPrefs.fpsRainbow;
 	}
 }

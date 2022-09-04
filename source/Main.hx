@@ -123,9 +123,8 @@ class Main extends Sprite
 	// Event Handlers
 	public function coloring():Void
 	{
-		var fpsRainbow:Bool = ClientPrefs.fpsRainbow;
 		// Hippity, Hoppity, your code is now my property (from KadeEngine and a fork)
-		if (fpsRainbow)
+		if (ClientPrefs.fpsRainbow)
 		{
 			if (currentColor >= array.length)
 				currentColor = 0;
