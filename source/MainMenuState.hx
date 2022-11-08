@@ -21,7 +21,7 @@ import Achievements;
 import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
 #if android
-import android.Hardware;
+import android.Tools;
 #end
 
 using StringTools;
@@ -278,7 +278,7 @@ class MainMenuState extends MusicBeatState
 				//				selectedSomethin = true;
 				//				MusicBeatState.switchState(new MasterEditorMenu());
 				#if android
-				Hardware.vibrate(300);
+				Tools.vibrate(300);
 				#end
 			}
 		}
